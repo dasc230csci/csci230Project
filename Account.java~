@@ -1,0 +1,42 @@
+//package ????
+
+//public class Account contains the getter and setter
+//methods used in the sub class User and Admin.
+
+public class Account { //extends compareTo??
+  
+  //first name of the account owner
+  private String firstName;
+  //last name of the account owner
+  private String lastName;
+  //username of the account
+  private String userName;
+  //password for the account
+  private String passWord;
+  //what sub class the account object is casted too
+  private String Type;
+  //active or inactive
+  private String Status;
+  //is logged in or not
+  private Boolen LoggedIn;
+
+  //defult Account constuctor sets all the basic information
+  //tied to the Account object being created.
+  
+  public Account(String firstname, String lastname, String username, String password, String type, String status, Boolean loggedIn){
+    
+    this.firstName = firstname;
+    this.lastName = lastname;
+    this.userName = username;
+    this.passWord = password;
+    this.Type = type;
+    this.Status = status;
+    this. LoggedIn = loggedIn
+  }
+  
+  public String getFirstName(){
+    
+    return this.firstName;
+  }
+  
+}
