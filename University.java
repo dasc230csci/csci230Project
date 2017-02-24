@@ -4,6 +4,12 @@
 
 import java.util.*;
 
+/**
+ * A Class representing a University and all its functions.
+ * 
+ * @authors  Anh Tran, Caitlin Harvey, Daniel Song, Sam Halloran
+ * @version February 2017
+ */
 public class University {
   
   private String schoolName, state, location, control;
@@ -50,151 +56,294 @@ public class University {
     this.perEnrolled = perEnrolled;
     this.emphases = emphases;
   }
+
+/**
+ * Returns the school name.
+ * 
+ * @return the schoolName
+ */
+public String getSchoolName() {
+	return schoolName;
+}
+
+/**
+ * Sets the school name.
+ * 
+ * @param schoolName the schoolName to set
+ */
+public void setSchoolName(String schoolName) {
+	this.schoolName = schoolName;
+}
+
+/**
+ * Returns the state.
+ * 
+ * @return the state
+ */
+public String getState() {
+	return state;
+}
+
+/**
+ * Sets the state.
+ * 
+ * @param state the state to set
+ */
+public void setState(String state) {
+	this.state = state;
+}
+
+/**
+ * Returns the location.
+ * 
+ * @return the location
+ */
+public String getLocation() {
+	return location;
+}
+
+/**
+ * Sets the location.
+ * 
+ * @param location the location to set
+ */
+public void setLocation(String location) {
+	this.location = location;
+}
+
+/**
+ * Returns the control.
+ * 
+ * @return the control
+ */
+public String getControl() {
+	return control;
+}
+
+/**
+ * Sets the control.
+ * 
+ * @param control the control to set
+ */
+public void setControl(String control) {
+	this.control = control;
+}
+
+/**
+ * Returns the number of enrolled.
+ * 
+ * @return the numOfEnrolled
+ */
+public int getNumOfEnrolled() {
+	return numOfEnrolled;
+}
+
+/**
+ * Sets the number of enrolled.
+ * 
+ * @param numOfEnrolled the numOfEnrolled to set
+ */
+public void setNumOfEnrolled(int numOfEnrolled) {
+	this.numOfEnrolled = numOfEnrolled;
+}
+
+/**
+ * Returns total number of applicants.
+ * 
+ * @return the totNumOfApplicant
+ */
+public int getTotNumOfApplicant() {
+	return totNumOfApplicant;
+}
+
+/**
+ * Sets total number of applicants.
+ * 
+ * @param totNumOfApplicant the totNumOfApplicant to set
+ */
+public void setTotNumOfApplicant(int totNumOfApplicant) {
+	this.totNumOfApplicant = totNumOfApplicant;
+}
+
+/**
+ * Returns the academic scale.
+ * 
+ * @return the academicsScale
+ */
+public int getAcademicsScale() {
+	return academicsScale;
+}
+
+/**
+ * Sets the academic scale.
+ * 
+ * @param academicsScale the academicsScale to set
+ */
+public void setAcademicsScale(int academicsScale) {
+	this.academicsScale = academicsScale;
+}
+
+/**
+ * Returns the social scale.
+ * 
+ * @return the socialScale
+ */
+public int getSocialScale() {
+	return socialScale;
+}
+
+/**
+ * Sets the social scale.
+ * 
+ * @param socialScale the socialScale to set
+ */
+public void setSocialScale(int socialScale) {
+	this.socialScale = socialScale;
+}
+
+/**
+ * Returns the quality of life scale.
+ * 
+ * @return the qualOfLifeScale
+ */
+public int getQualOfLifeScale() {
+	return qualOfLifeScale;
+}
+
+/**
+ * Sets the quality of life scale.
+ * 
+ * @param qualOfLifeScale the qualOfLifeScale to set
+ */
+public void setQualOfLifeScale(int qualOfLifeScale) {
+	this.qualOfLifeScale = qualOfLifeScale;
+}
+
+/**
+ * Returns the female ratio.
+ * 
+ * @return the femaleRatio
+ */
+public Double getFemaleRatio() {
+	return femaleRatio;
+}
+
+/**
+ * Sets the female ratio.
+ * 
+ * @param femaleRatio the femaleRatio to set
+ */
+public void setFemaleRatio(Double femaleRatio) {
+	this.femaleRatio = femaleRatio;
+}
+
+/**
+ * Returns the SAT Verbal.
+ * 
+ * @return the satVerbal
+ */
+public Double getSatVerbal() {
+	return satVerbal;
+}
+
+/**
+ * Sets the SAT Verbal
+ * 
+ * @param satVerbal the satVerbal to set
+ */
+public void setSatVerbal(Double satVerbal) {
+	this.satVerbal = satVerbal;
+}
+
+/**
+ * Returns the SAT math.
+ * 
+ * @return the satMath
+ */
+public Double getSatMath() {
+	return satMath;
+}
+
+/**
+ * sets the SAT math.
+ * 
+ * @param satMath the satMath to set
+ */
+public void setSatMath(Double satMath) {
+	this.satMath = satMath;
+}
+
+/**
+ * Returns the expenses.
+ * 
+ * @return the expenses
+ */
+public Double getExpenses() {
+	return expenses;
+}
+
+/**
+ * Sets the expenses.
+ * 
+ * @param expenses the expenses to set
+ */
+public void setExpenses(Double expenses) {
+	this.expenses = expenses;
+}
+
+/**
+ * Returns the per admitted ratio.
+ * 
+ * @return the perAdmitted
+ */
+public Double getPerAdmitted() {
+	return perAdmitted;
+}
+
+/**
+ * Sets the per admitted ratio.
+ * 
+ * @param perAdmitted the perAdmitted to set
+ */
+public void setPerAdmitted(Double perAdmitted) {
+	this.perAdmitted = perAdmitted;
+}
+
+/**
+ * Returns the per enrolled ratio.
+ * 
+ * @return the perEnrolled
+ */
+public Double getPerEnrolled() {
+	return perEnrolled;
+}
+
+/**
+ * Sets the per enrolled ratio.
+ * 
+ * @param perEnrolled the perEnrolled to set
+ */
+public void setPerEnrolled(Double perEnrolled) {
+	this.perEnrolled = perEnrolled;
+}
+
+/**
+ * Returns the emphases.
+ * 
+ * @return the emphases
+ */
+public ArrayList<String> getEmphases() {
+	return emphases;
+}
+
+/**
+ * Sets the emphases.
+ * 
+ * @param emphases the emphases to set
+ */
+public void setEmphases(ArrayList<String> emphases) {
+	this.emphases = emphases;
+}
   
-  /**
-   * method to set the state of the school
-   * 
-   * @param state state school is in
-   */
-  public void setState(String state)
-  {
-    this.state = state;
-  }
   
-  /**
-   * method to set the name of the school
-   * 
-   * @param schoolName name of the school
-   */
-  public void setSchoolName(String schoolName)
-  {
-    this.schoolName=schoolName;
-  }
-  
-  /**
-   * method to set the location of the school
-   * 
-   * @param location location of the school
-   */
-  public void setLocation(String location)
-  {
-    this.location=location;
-  }
-  
-  /**
-   * method to set if the school is public or private
-   * 
-   * @param control public or private
-   */
-  public void setControl(String control)
-  {
-  }
-  
-  /**
-   * method to set the number of enrolled students
-   * 
-   * @param numOfEnrolled number of enrolled student
-   */
-  public void setNumOfEnrolled(int numOfEnrolled)
-  {
-  }
-  
-  /**
-   * method to set the academic scale
-   * 
-   * @param academicScale the academic scale
-   */
-  public void setAcademicScale(int academicScale)
-  {
-  }
-  
-  /**
-   * method to set the emphases of the school
-   * 
-   * @param emphases the emphases of the school
-   */
-  public void setEmphases(ArrayList<String> setEmphases)
-  {
-  }
-  
-  /**
-   * method to set the social scale of the school
-   * 
-   * @param socialScale the social scale of the school
-   */
-  public void setSocialScale(int socialScale)
-  {
-  }
-  
-  /**
-   * method to set the quality of life scale
-   * 
-   * @param qualOflifeScale the scale of quality of life
-   */
-  public void setQualOfLifeScale(int qualOfLifeScale)
-  {
-  }
-  
-  /**
-   * method to set the total number of applicant
-   * 
-   * @param totNumOfApplicant total number of applicant
-   */
-  public void setTotNumOfApplicant(int totNumOfApplicant)
-  {
-  }
-  
-  /**
-   * method to set the female ratio
-   * 
-   * @param femaleRatio the demale ratio
-   */
-  public void setFemaleRatio(double femaleRatio)
-  {
-  }
-  
-  /**
-   * method to set the SAT verbal
-   * 
-   * @param satVerbal the SAT verbal
-   */
-  public void setSatVerbal(double satVerbal)
-  {
-  }
-  
-  /**
-   * method to set the SAT math score
-   * 
-   * @param satMath the SAT math score 
-   */
-  public void setSatMath(double satMath)
-  {
-  }
-  
-  /**
-   * method to set the expenses for the school
-   * 
-   * @param expenses the expenses for the school
-   */
-  public void setExpenses(double expenses)
-  {
-  }
-  
-  /**
-   * method to set the percentaged of admitted applicants
-   * 
-   * @param perAdmitted percentage of admitted applicants
-   */
-  public void setPerAdmitted(double perAdmitted)
-  {
-  }
-  
-  /**
-   * method to set the percentaged of enrolled students
-   * 
-   * @param perEnrolled percentage of enrolled students
-   */
-  public void setPerEnrolled(double perEnrolled)
-  {
-  }
 }
