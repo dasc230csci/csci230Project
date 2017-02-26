@@ -4,6 +4,11 @@
 //methods used in the sub class User and Admin.
 import java.util.*;
 
+/**
+* public class Account contains the getter and setter
+* methods used in the sub class User and Admin.
+*/
+
 
 public class Account { //extends compareTo??
   
@@ -20,10 +25,21 @@ public class Account { //extends compareTo??
   //active or inactive
   private String Status;
   //is logged in or not
-  private Boolen LoggedIn;
+  private Boolean LoggedIn;
 
-  //defult Account constuctor sets all the basic information
-  //tied to the Account object being created.
+  /**
+   * default Account constructor sets all the basic information
+   * tied to the Account object being created.
+   * 
+   * @param firstname
+   * @param lastname
+   * @param username
+   * @param password
+   * @param type
+   * @param status
+   * @param loggedIn
+   */
+ 
   
   public Account(String firstname, String lastname, String username, String password, String type, String status, Boolean loggedIn){
     
@@ -33,7 +49,7 @@ public class Account { //extends compareTo??
     this.passWord = password;
     this.Type = type;
     this.Status = status;
-    this. LoggedIn = loggedIn
+    this.LoggedIn = loggedIn;
   }
   
   /**
@@ -49,7 +65,7 @@ public class Account { //extends compareTo??
   
   /**
    * the getLastName() method, returns the current instance
-   * of the lastName varibale
+   * of the lastName variable
    * @returns lastName
    */
   
@@ -60,7 +76,7 @@ public class Account { //extends compareTo??
   
   /**
    * the getUserName() method, return the current instance 
-   * of the userName varibale
+   * of the userName variable
    * @return String userName
    */
   
@@ -128,7 +144,7 @@ public class Account { //extends compareTo??
   /**
    * the setUserName() method, takes a String
    * newUName parameter and sets it to the userName
-   * varible, replacing its old value
+   * Variable, replacing its old value
    * @param String newUName
    */
   public void setUserName(String newUName){
@@ -137,14 +153,14 @@ public class Account { //extends compareTo??
   }
   
   /**
-   * the setPassword() method, takes a Stirng
+   * the setPassword() method, takes a String
    * newPWord parameter and sets it to the 
    * passWord variable, replacing its old value
    * @param String newPWord
    */
   public void setPassword(String newPWord){
   
-    this.passWord = newPWord
+    this.passWord = newPWord;
   }
   
   /**
@@ -177,7 +193,7 @@ public class Account { //extends compareTo??
    */
   public Boolean logStatus(){
     
-    if(loggedIn){
+    if(this.LoggedIn == true){
       return true;
     }
     
