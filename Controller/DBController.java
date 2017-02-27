@@ -83,7 +83,11 @@ public class DBController {
 	}
 	
 	/**
-	  *not completed
+	  * Search the university with the criteria that the university has been found
+	  * by the user
+	  * 
+	  * @param University university with the information that user found from the search
+	  * @return list of name of school within criteria
 	  */
 	public ArrayList<University> searchRecommendation(University university){
 		return null;
