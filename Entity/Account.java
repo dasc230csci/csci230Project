@@ -57,7 +57,7 @@ public class Account {
    * @param status status of the user whether the account is activated or not
    * @param loggedIn status of the user whether the account is loggedIn
    */
-  public Account(String firstname, String lastname, String username, String password, String type, String status, Boolean loggedIn){
+  public Account(String firstname, String lastname, String username, String password, String type, String status, boolean loggedIn){
     
     this.firstName = firstname;
     this.lastName = lastname;
