@@ -7,7 +7,11 @@ package UI;
 import java.util.ArrayList;
 import Entity.*;
 import Controller.*;
-
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import acm.gui.*;
+import acm.program.*;
 /**
  * Class to represent the User UI.
  * 
@@ -15,21 +19,83 @@ import Controller.*;
  * @version Feburary 27, 2017
  */
 
-public class UserUI {
-	/**
-	 * UserFuncController which provide
-	 * functionality of user
-	 */
-	private UserFuncController userFuncController;
+public class UserUI extends GraphicsProgram{
+ /**
+  * UserFuncController which provide
+  * functionality of user
+  */
+ private UserFuncController userFuncController;
+ 
+ /**
+  * SearchController to search for school
+  */
+ private SearchController searchController;
+ 
+ /**
+  * user created in teh system to interact with UI;
+  */
+ private User user;
   
+ private JButton search, viewSavedSchool, viewProfile, editProfile, 
+   resetUserInfo, saveSchool, remove, view,
+   resetSearch;
+ /**
+  * the constructor to create a UserUI for a specific user
+  * @param user the user using the system
+  */
+ 
+ public UserUI(User user){
+   this.user=user;
+   this.searchController= new SearchController();
+   this.userFuncController= new UserFuncController(this.user);
+   this.userFuncController= new UserFuncController(this.user);
+   this.search = new JButton("Search for schools");
+   this.add(search);
+   this.search.setVisible(true);
+   this.viewSavedSchool = new JButton("Manage My Saved School");
+   this.add(viewSavedSchool);
+   this.viewSavedSchool.setVisible(true);
+   this.viewProfile = new JButton("Manage My Profile");
+   this.add(viewProfile);
+   this.viewProfile.setVisible(true);
+   this.editProfile = new JButton("Edit User");
+   this.add(viewProfile);
+   this.viewProfile.setVisible(false);
+   this.resetUserInfo = new JButton("Reset Profile");
+   this.add(resetUserInfo);
+   this.resetUserInfo.setVisible(false);
+   this.saveSchool = new JButton("Save");
+   this.add(saveSchool);
+   this.saveSchool.setVisible(false);
+   this.remove = new JButton("Remove");
+   this.add(remove);
+   this.remove.setVisible(false);
+   this.view = new JButton("view");
+   this.add(view);
+   this.view.setVisible(false);
+   this.resetSearch = new JButton("reset form");
+   this.add(resetSearch);
+   this.resetSearch.setVisible(false);   
+   this.resetSearch.addActionListener(this);
+   this.view.addActionListener(this);
+   this.remove.addActionListener(this);
+   this.saveSchool.addActionListener(this);
+   this.resetUserInfo.addActionListener(this);
+   this.editProfile.addActionListener(this);
+   this.search.addActionListener(this);
+   this.viewProfile.addActionListener(this);
+   this.viewSavedSchool.addActionListener(this);
+ }
+ 
+ 
   /**
    * the viewSavedSchools method, returns the current
    * array list of saved schools associated with the
    * current user signed in.
-   * @return ArrayList<String> of saved schools
    */
-  public ArrayList<String> viewSavedSchool(){
-    return null;
+  public void viewSavedSchool(){
+    ArrayList<String> savedSchool = this.userFuncController.viewSavedSchool();
+
   }
   
   /**
@@ -49,7 +115,7 @@ public class UserUI {
    * @return a collection of University objects
    */  
   public ArrayList<String> search(){
-	  return null;
+   return null;
   }
   
   /**
@@ -58,7 +124,7 @@ public class UserUI {
    * @return true if successfully edit profile
    */  
   public boolean editProfile(){
-	  return false;
+   return false;
   }
   
   /**
@@ -68,7 +134,7 @@ public class UserUI {
    * @return ArrayList<String> user information
    */
   public ArrayList<String> resetUserInfo(){
-	  return null;
+   return null;
   }
   
   /**
@@ -78,7 +144,7 @@ public class UserUI {
    * @returns true if the school is successfully saved 
    */
   public boolean saveSchool(){
-	  return false;
+   return false;
   }
   
   /**
@@ -88,7 +154,7 @@ public class UserUI {
    * @returns true if the school successfully removed 
    */ 
   public boolean removeSavedUniversity(){
-	  return false;
+   return false;
   }
   
   /**
@@ -98,7 +164,7 @@ public class UserUI {
    * @return ArrayList<String> information of the school
    */
   public ArrayList<String> viewUniversityInDetail(){
-	  return null;
+   return null;
   }
   
   /**
@@ -108,6 +174,6 @@ public class UserUI {
    * @returns true if successfully reset
    */
   public boolean resetSchoolSearchForm(){
-	  return false;
+   return false;
   }
 }

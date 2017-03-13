@@ -36,7 +36,7 @@ public class UserFuncController {
  /**
   * Account instance variable
   */
- private Account account;
+ private User account;
  
  /**
   * Creates the Controller.
@@ -76,8 +76,7 @@ public class UserFuncController {
   * @return ArrayList<String> list of saved school of user
   */
  public ArrayList<String> viewSavedSchool(){
-  User student = (User)account;
-  return student.getSavedSchool();
+  return account.getSavedSchool();
  }
  
  /**
@@ -87,8 +86,7 @@ public class UserFuncController {
   * @return true if the school is successfully removed;
   */
  public boolean removeSavedUniversity(String schoolName){
-  User student = (User)account;
-  student.removeSavedSchool(schoolName);
+  accountController.removeSavedSchool(schoolName);
   return true;
  }
  
