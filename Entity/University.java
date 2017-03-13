@@ -12,10 +12,10 @@ import java.util.*;
  * @version Feburary 27, 2017
  */
 public class University {
-
+	
 	private String schoolName, state, location, control;
 	private int numOfEnrolled, totNumOfApplicant, academicsScale, socialScale, qualOfLifeScale;
-	private Double femaleRatio, satVerbal, satMath, expenses, perAdmitted, perEnrolled;
+	private double femaleRatio, satVerbal, satMath, expenses, perFinanAid, perAdmitted, perEnrolled;
 	private ArrayList<String> emphases;
 
 	/**
@@ -27,37 +27,39 @@ public class University {
 	 * @param location specific location of the school
 	 * @param control private or public
 	 * @param numOfEnrolled number of enrollment
-	 * @param totNumOfApplicant total number of applicant
-	 * @param academicScale scale of academic from 1-5
-	 * @param socialScale the quality of the community and social life
-	 * @param qualOfLifeScale the quality of life scale
 	 * @param femaleRatio the ratio of female to male
 	 * @param satVerbal the SAT verbal score
 	 * @param satMath the SAT math score
 	 * @param expenses the expenses of one school year
+	 * @param perFinanAid the percentage of students get financial aid
+	 * @param totNumOfApplicant total number of applicant
 	 * @param perAdmitted the percentage of applicants that get accepted
 	 * @param perEnrolled the percentage of applicants that enrolled
+	 * @param academicScale scale of academic from 1-5
+	 * @param socialScale the quality of the community and social life
+	 * @param qualOfLifeScale the quality of life scale 
 	 * @param emphases the emphases of the school
 	 */
 	public University(String schoolName, String state, String location, String control, int numOfEnrolled,
-			int totNumOfApplicant, int academicScale, int socialScale, int qualOfLifeScale, double femaleRatio,
-			double satVerbal, double satMath, double expenses, double perAdmitted, double perEnrolled,
+			double femaleRatio, double satVerbal, double satMath, double expenses, double perFinanAid,
+			int totNumOfApplicant, double perAdmitted, double perEnrolled, int academicScale, int socialScale, int qualOfLifeScale,
 			ArrayList<String> emphases) {
 		this.schoolName = schoolName;
 		this.state = state;
 		this.location = location;
 		this.control = control;
 		this.numOfEnrolled = numOfEnrolled;
-		this.totNumOfApplicant = totNumOfApplicant;
-		this.academicsScale = academicScale;
-		this.socialScale = socialScale;
-		this.qualOfLifeScale = qualOfLifeScale;
 		this.femaleRatio = femaleRatio;
 		this.satVerbal = satVerbal;
 		this.satMath = satMath;
 		this.expenses = expenses;
+		this.perFinanAid = perFinanAid;
+		this.totNumOfApplicant = totNumOfApplicant;
 		this.perAdmitted = perAdmitted;
 		this.perEnrolled = perEnrolled;
+		this.academicsScale = academicScale;
+		this.socialScale = socialScale;
+		this.qualOfLifeScale = qualOfLifeScale;
 		this.emphases = emphases;
 	}
 
@@ -363,6 +365,21 @@ public class University {
 	 */
 	public void setEmphases(ArrayList<String> emphases) {
 		this.emphases = emphases;
+	}
+	
+	/**
+	 * Method to get percentage of student who get financial aid
+	 * @return double perFinanAid
+	 */
+	public double getPerFinanAid(){
+		return this.perFinanAid;
+	}
+	
+	/**
+	 * Method to set percentage of student who get financial aid
+	 */
+	public void setPerFinanAid(double perFinanAid){
+		this.perFinanAid = perFinanAid;
 	}
 
 }

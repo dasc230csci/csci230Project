@@ -28,8 +28,9 @@ public class User extends Account{
 	 * @param loggedIn status of the user whether the account is loggedIn
 	 */
 	public User(String firstname, String lastname, String username, String password, String status,
-			Boolean loggedIn) {
+			boolean loggedIn) {
 		super(firstname, lastname, username, password, "u", status, loggedIn);
+		savedSchool = new ArrayList<String>();
 	}
 	
 	/**
@@ -47,6 +48,7 @@ public class User extends Account{
 	 * @return true if successfully add school to the list
 	 */
 	public boolean addSavedSchool(String schoolName){
+		savedSchool.add(schoolName);
 		return false;
 	}
 	
@@ -56,6 +58,7 @@ public class User extends Account{
 	 * @return true if successfully remove school from the list
 	 */
 	public boolean removeSavedSchool(String schoolName){
+		savedSchool.remove(schoolName);
 		return false;
 	}
 }
