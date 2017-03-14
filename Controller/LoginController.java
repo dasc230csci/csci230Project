@@ -18,6 +18,7 @@ public class LoginController {
 	  * Default Constructor
 	  */
 	 public LoginController(){
+		 this.accountController = new AccountController();
 	 }
 	 
 	 /**
@@ -29,6 +30,12 @@ public class LoginController {
 	  * @return true if valid user logging in
 	  */
 	 public boolean verifyUser(String username, String password){
-		 return true;
+		 boolean verify = this.accountController.verifyAccount(username, password);
+		 if (verify == true){
+			 return true;
+		 }
+		 else {
+			 return false;
+		 }	 
 	 }
 }

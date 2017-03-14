@@ -30,11 +30,21 @@ public class LoginUI {
   * identified if the person is admin.
   */
  private AdminUI adminUI;
+ 
  /**
   * Verifying whether the user is valid to access
   * @return true if successfully verified
   */
- public boolean verifyUser(){
-  return false;
+ public boolean verifyUser(String username, String password){
+	 //method needs to take user login info parameters to pass along to LoginController method
+	 this.loginController = new LoginController();
+	 boolean verify = this.loginController.verifyUser(username, password);
+	 if (verify == true) {
+		 return true;
+	 }
+	 else {
+		 return false;
+	 }
+
  }
 }
