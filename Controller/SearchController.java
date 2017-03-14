@@ -34,6 +34,7 @@ public class SearchController{
 	 * Default Constructor
 	 */
   public SearchController(){
+	  dbController = new DBController();
   }
   
   /**
@@ -45,6 +46,7 @@ public class SearchController{
    * @return a collection of University objects
    */
   public ArrayList<University> search(ArrayList<String> schoolInfo){
+	ArrayList<String> searchedSchoolList = dbController.search(schoolInfo);
     return null;
   }
   /**
