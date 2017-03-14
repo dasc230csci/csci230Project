@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry exported="true" kind="lib" path="/net/home/sjhalloran/CS230/HomeWork/Eclipse/CSCI230.FirstEclipseProject.sjhalloran/csci230databaselibrary.jar"/>
-	<classpathentry exported="true" kind="lib" path="/net/home/sjhalloran/CS230/HomeWork/Eclipse/CSCI230.FirstEclipseProject.sjhalloran/mysql-connector-java-3.1.10-bin.jar"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>
