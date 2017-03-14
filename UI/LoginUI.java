@@ -33,6 +33,9 @@ public class LoginUI {
  
  /**
   * Verifying whether the user is valid to access
+  * 
+  * @param name username of the user
+  * @param password of the user
   * @return true if successfully verified
   */
  public boolean verifyUser(String username, String password){
@@ -45,6 +48,5 @@ public class LoginUI {
 	 else {
 		 return false;
 	 }
-
  }
 }

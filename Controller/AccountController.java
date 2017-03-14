@@ -2,7 +2,7 @@ package Controller;
 
 import java.util.ArrayList;
 import Entity.Account;
-
+import dblibrary.project.csci230.UniversityDBLibrary;
 
 /**
  * This is AccountController controller class which enable functionalities such as 
@@ -24,10 +24,14 @@ public class AccountController {
 	 */
 	private DBController dbController;
 	
+	//need UniversityDBLibrary to call methods from the given DB libray class
+	private UniverysityDBLibrary dbLibrary;
+	
 	/**
 	 * Default Constructor
 	 */
 	public AccountController(){
+		this.dbController = new DBController();
 	}
 	
 	/**
@@ -36,7 +40,9 @@ public class AccountController {
 	 */
 	public AccountController(Account account){
 		this.account = account;
+		this.dbController = new DBController();
 	}
+	
 	/**
 	 * Method that create new Account with specified information
 	 * and save into database
