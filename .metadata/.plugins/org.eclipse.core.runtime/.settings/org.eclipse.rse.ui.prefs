@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 org.eclipse.rse.preferences.order.connections=viewlincsci32.Local
+=======
+org.eclipse.rse.preferences.order.connections=viewlincsci24.Local
+>>>>>>> 8ebdd1ac8c16300355d3391bb7fec3fff42f67bd

@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 activeuserprofiles=Team;viewlincsci19;viewlincsci32
 eclipse.preferences.version=1
 org.eclipse.rse.systemtype.local.systemType.defaultUserId=sjhalloran
 useridperkey=viewlincsci32.Local\=sjhalloran;
+=======
+eclipse.preferences.version=1
+org.eclipse.rse.systemtype.local.systemType.defaultUserId=sjhalloran
+useridperkey=viewlincsci24.Local\=sjhalloran;
+>>>>>>> 8ebdd1ac8c16300355d3391bb7fec3fff42f67bd

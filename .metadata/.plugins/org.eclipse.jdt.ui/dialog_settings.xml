@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+<<<<<<< HEAD
 	<item value="/net/home/sjhalloran/CS230/HomeWork/Eclipse/CSCI230.FirstEclipseProject.sjhalloran" key="org.eclipse.jdt.ui.lastextjar"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item value="2" key="layout"/>
@@ -13,6 +14,10 @@
 	<section name="BuildPathsPropertyPage">
 		<item value="3" key="pageIndex"/>
 	</section>
+=======
+	<section name="quick_assist_proposal_size">
+	</section>
+>>>>>>> 8ebdd1ac8c16300355d3391bb7fec3fff42f67bd
 	<section name="completion_proposal_size">
 	</section>
 	<section name="JavaElementSearchActions">
