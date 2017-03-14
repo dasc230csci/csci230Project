@@ -68,7 +68,23 @@ public class AccountDBController {
 	  * @param account Account objects that had been updated
 	  * @return true if the Account information can be updated
 	  */
-	public boolean updateAccount(User user){
+	public boolean updateAccount(Account account){
+		int failed = dblib.user_editUser(account.getUsername(), account.getFirstName(), account.getLastName(), account.getPassword(), 
+				account.getType().charAt(0), account.getStatus().charAt(0));
+		if(failed != -1){
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	/**
+	  * Update user information and store in DB
+	  * 
+	  * @param account Account objects that had been updated
+	  * @return true if the Account information can be updated
+	  */
+	public boolean updateUser(User user){
 		int failed = dblib.user_editUser(user.getUsername(), user.getFirstName(), user.getLastName(), user.getPassword(), 
 				user.getType().charAt(0), user.getStatus().charAt(0));
 		ArrayList<String> oldSchoolList = getAccount(user.getUsername()).getSavedSchool();
@@ -92,7 +108,22 @@ public class AccountDBController {
 	  * @param account Account objects that had been added
 	  * @return true if the Account information can be added
 	  */
-	public boolean addAccount(User user){
+	public boolean addAccount(Account account){
+		int failed = dblib.user_addUser(account.getFirstName(), account.getLastName(), account.getUsername(), 
+				account.getPassword(), account.getType().charAt(0));
+		if(failed != -1){
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	  * Add new User information and store in DB
+	  * 
+	  * @param account Account objects that had been added
+	  * @return true if the Account information can be added
+	  */
+	public boolean addUser(User user){
 		int failed = dblib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), 
 				user.getPassword(), user.getType().charAt(0));
 		for(int i =0; i < user.getSavedSchool().size() ; i++){
