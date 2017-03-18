@@ -35,7 +35,7 @@ public class AdminFuncController
    */
   public ArrayList<String> viewAllUser()
   {
-    return null;
+   return accountController.getUsernameList();
   }
   
   /**
@@ -46,7 +46,7 @@ public class AdminFuncController
    */
   public boolean deactivateUser(String username)
   {
-    return false;
+ return accountController.deactivateAccount(username);
   }
   
   /**
@@ -57,7 +57,8 @@ public class AdminFuncController
    */
   public boolean addUniversity(ArrayList<String> schoolInfo)
   {
-    return false;
+ universityController.createUniversity(schoolInfo);
+    return true;
   }
   
    /**
@@ -84,7 +85,8 @@ public class AdminFuncController
    */
   public boolean createUser(String firstName, String lastName, String userName, String password, String type, String status)
   {
-    return false;
+  accountController.createAccount(firstName, lastName, userName, password, type, status);
+  return true;
   }
   
   /**
@@ -100,7 +102,7 @@ public class AdminFuncController
    */
   public boolean editUserProfile(String firstName, String lastName, String username, String password, String type, String status)
   {
-    return false;
+    return accountController.adminEditProfile(firstName, lastName, username, password, type, status);
   }
   
   /**
@@ -108,7 +110,7 @@ public class AdminFuncController
    * 
    * return account the account that has not been modified
    */
-  public Account reset()
+  public Account reset(String username)
   {
     return null;
   }
@@ -119,9 +121,8 @@ public class AdminFuncController
    * @param username the name of the user
    * @return User the specific user want to view
    */
-  public Account viewSpecificUser(String username)
+  public User viewSpecificUser(String username)
   {
-    return null;
+	  return accountController.getAccountInfo(username);
   }
 }
-

@@ -53,7 +53,7 @@ public class UserFuncController {
   * @returns true if the school is successfully saved 
   */
  public boolean saveSchool(String schoolName) {   
-   accountController.saveSchool(schoolName);
+   accountController.saveSchool(account, schoolName);
    return true; 
  }
  
@@ -66,7 +66,7 @@ public class UserFuncController {
   * @return true if successfully edit profile
   */
  public boolean editProfile(String firstName, String lastName, String password){
-   accountController.userEditProfile(firstName, lastName, password);
+   accountController.userEditProfile(account.getUsername(), firstName, lastName, password);
    return true;
  }
 
@@ -85,8 +85,8 @@ public class UserFuncController {
   * @param schoolName name of the school to remove
   * @return true if the school is successfully removed;
   */
- public boolean removeSavedUniversity(String schoolName){
-  accountController.removeSavedSchool(schoolName);
+ public boolean removeSavedSchool(String schoolName){
+  accountController.removeSavedSchool(account, schoolName);
   return true;
  }
  
@@ -95,8 +95,8 @@ public class UserFuncController {
   * 
   * @return ArrayList<String> information of the user
   */
- public Account resetUserInfo(String username) {
-  return accountController.resetAccountInfo(username);
+ public Account resetUserInfo() {
+  return accountController.resetAccountInfo(account.getUsername());
  }
  
  /**
