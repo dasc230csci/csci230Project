@@ -15,32 +15,17 @@ import Entity.University;
  */
 
 public class UniversityController {
-
-	/**
-	 * University to edit, add or control university
-	 */
-	private University university;
 	
 	/**
 	 * DBController to access to database to edit, or add new university
 	 */
-	private DBController dbController;
+	private UniversityDBController universityDBController;
 	
 	/**
 	 * Default Constructor
 	 */
 	public UniversityController(){
-		dbController = new DBController();
-	}
-
-	/**
-	 * A constructor to create a new university controller that has a specific
-	 * university
-	 * @param university the university
-	 */
-	public UniversityController(University university) {
-		this.university = university;
-		dbController = new DBController();
+		universityDBController = new UniversityDBController();
 	}
 
 	/**
@@ -49,7 +34,7 @@ public class UniversityController {
 	 * @param schoolInfo the information to create a new university
 	 * @return an university
 	 */
-	public University createUniversity(ArrayList<String> schoolInfo){
+	public boolean createUniversity(ArrayList<String> schoolInfo){
 		ArrayList<String> emphases = new ArrayList<String>();
 		for(int i = 16; i < schoolInfo.size(); i++){
 			emphases.add(schoolInfo.get(i));
@@ -59,8 +44,8 @@ public class UniversityController {
 				Double.parseDouble(schoolInfo.get(8)),Double.parseDouble(schoolInfo.get(9)),Integer.parseInt(schoolInfo.get(10)),
 				Double.parseDouble(schoolInfo.get(11)),Double.parseDouble(schoolInfo.get(12)),Integer.parseInt(schoolInfo.get(13)),
 				Integer.parseInt(schoolInfo.get(14)),Integer.parseInt(schoolInfo.get(15)),emphases);
-		dbController.addUniversity(newUniversity);
-		return newUniversity; /////////////////////////////should return university?????????
+		boolean isFailed = universityDBController.addUniversity(newUniversity);
+		return isFailed;
 	}
 
 	/**
@@ -70,7 +55,7 @@ public class UniversityController {
 	 * @return University the university with the complete information
 	 */
 	public University getUniversityInDetailed(String schoolName){
-		University university = dbController.getUniversity(schoolName);
+		University university = universityDBController.getUniversity(schoolName);
 		return university;
 	}
 
@@ -91,7 +76,7 @@ public class UniversityController {
 				Double.parseDouble(editInfo.get(8)),Double.parseDouble(editInfo.get(9)),Integer.parseInt(editInfo.get(10)),
 				Double.parseDouble(editInfo.get(11)),Double.parseDouble(editInfo.get(12)),Integer.parseInt(editInfo.get(13)),
 				Integer.parseInt(editInfo.get(14)),Integer.parseInt(editInfo.get(15)),emphases);
-		dbController.updateUniversity(newUniversity);
-		return false;
+		boolean isFailed = universityDBController.updateUniversity(newUniversity);
+		return isFailed;
 	}
 }

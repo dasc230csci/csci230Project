@@ -18,15 +18,19 @@ public class AdminUI {
 	 * AdminFuncController which provide
 	 * functionality of admin
 	 */
-	private AdminFuncController adminFuncCon;
-	private Admin theAdmin;
+	private AdminFuncController adminFuncController;
+	
+	/**
+	 * username of the user
+	 */
+	private String username;
 	
 	/**
 	 * Default constructor.
 	 */
-	public AdminUI(Admin admin) {
-		this.adminFuncCon = new AdminFuncController(admin);
-		this.theAdmin = admin;
+	public AdminUI(String username) {
+		this.username = username;
+		this.adminFuncController = new AdminFuncController();
 	}
 
 	/**
@@ -34,8 +38,8 @@ public class AdminUI {
 	 * @return ArrayList<String> list of all users
 	 */
 	public ArrayList<String> viewAllUser() {
-		ArrayList<String> savedSchool = this.adminFuncCon.viewAllUser();
-		return savedSchool;	
+		ArrayList<String> userList = this.adminFuncController.viewAllUser();
+		return userList;
 	}
 	
 	/**
@@ -43,7 +47,7 @@ public class AdminUI {
 	 * @return true if successfully deactivate user
 	 */
 	public boolean deactivateUser(String username) {
-		return adminFuncCon.deactivateUser(username);
+		return adminFuncController.deactivateUser(username);
 	}
 	
 	/**
@@ -54,27 +58,27 @@ public class AdminUI {
 	public boolean addUniversity(String schoolName, String state, String location, String control, int numOfEnrolled,
 			double femaleRatio, double satVerbal, double satMath, double expenses, double perFinanAid,
 			int totNumOfApplicant, double perAdmitted, double perEnrolled, int academicScale, int socialScale, int qualOfLifeScale,
-			ArrayList<String> emphases) {
+			ArrayList<String> emphases){
 		
 			ArrayList<String> schoolInfo=new ArrayList<>();
 		   schoolInfo.add(schoolName);
 		   schoolInfo.add(state);
 		   schoolInfo.add(location);
 		   schoolInfo.add(control);
-		   schoolInfo.add(numOfEnrolled+"");
-		   schoolInfo.add(femaleRatio+"");
-		   schoolInfo.add(satVerbal+"");
-		   schoolInfo.add(satMath+"");
-		   schoolInfo.add(expenses+"");
-		   schoolInfo.add(perFinanAid+"");
-		   schoolInfo.add(totNumOfApplicant+"");
-		   schoolInfo.add(perAdmitted+"");
-		   schoolInfo.add(perEnrolled+"");
-		   schoolInfo.add(academicScale+"");
-		   schoolInfo.add(socialScale+"");
-		   schoolInfo.add(qualOfLifeScale+"");
-		   schoolInfo.add(emphases+"");
-		   if(adminFuncCon.addUniversity(schoolInfo)==true){
+		   schoolInfo.add(Integer.toString(numOfEnrolled));
+		   schoolInfo.add(Double.toString(femaleRatio));
+		   schoolInfo.add(Double.toString(satVerbal));
+		   schoolInfo.add(Double.toString(satMath));
+		   schoolInfo.add(Double.toString(expenses));
+		   schoolInfo.add(Double.toString(perFinanAid));
+		   schoolInfo.add(Integer.toString(totNumOfApplicant));
+		   schoolInfo.add(Double.toString(perAdmitted));
+		   schoolInfo.add(Double.toString(perEnrolled));
+		   schoolInfo.add(Integer.toString(academicScale));
+		   schoolInfo.add(Integer.toString(socialScale));
+		   schoolInfo.add(Integer.toString(qualOfLifeScale));
+		   schoolInfo.addAll(emphases);
+		   if(adminFuncController.addUniversity(schoolInfo)){
 			   return true;
 		   }
 		   return false;
@@ -90,25 +94,25 @@ public class AdminUI {
 			int totNumOfApplicant, double perAdmitted, double perEnrolled, int academicScale, int socialScale, int qualOfLifeScale,
 			ArrayList<String> emphases) {
 		
-		ArrayList<String> schoolInfo=new ArrayList<>();	
+			ArrayList<String> schoolInfo=new ArrayList<>();
 		   schoolInfo.add(schoolName);
 		   schoolInfo.add(state);
 		   schoolInfo.add(location);
 		   schoolInfo.add(control);
-		   schoolInfo.add(numOfEnrolled+"");
-		   schoolInfo.add(femaleRatio+"");
-		   schoolInfo.add(satVerbal+"");
-		   schoolInfo.add(satMath+"");
-		   schoolInfo.add(expenses+"");
-		   schoolInfo.add(perFinanAid+"");
-		   schoolInfo.add(totNumOfApplicant+"");
-		   schoolInfo.add(perAdmitted+"");
-		   schoolInfo.add(perEnrolled+"");
-		   schoolInfo.add(academicScale+"");
-		   schoolInfo.add(socialScale+"");
-		   schoolInfo.add(qualOfLifeScale+"");
-		   schoolInfo.add(emphases+"");
-		   if(adminFuncCon.editUniversityInDetailed(schoolInfo)==true){
+		   schoolInfo.add(Integer.toString(numOfEnrolled));
+		   schoolInfo.add(Double.toString(femaleRatio));
+		   schoolInfo.add(Double.toString(satVerbal));
+		   schoolInfo.add(Double.toString(satMath));
+		   schoolInfo.add(Double.toString(expenses));
+		   schoolInfo.add(Double.toString(perFinanAid));
+		   schoolInfo.add(Integer.toString(totNumOfApplicant));
+		   schoolInfo.add(Double.toString(perAdmitted));
+		   schoolInfo.add(Double.toString(perEnrolled));
+		   schoolInfo.add(Integer.toString(academicScale));
+		   schoolInfo.add(Integer.toString(socialScale));
+		   schoolInfo.add(Integer.toString(qualOfLifeScale));
+		   schoolInfo.addAll(emphases);
+		   if(adminFuncController.editUniversityInDetailed(schoolInfo)){
 			   return true;
 		   }
 		   return false;
@@ -120,7 +124,7 @@ public class AdminUI {
 	 * @return true if successfully create new user
 	 */
 	public boolean createUser(String firstName, String lastName, String userName, String password, String type, String status) {
-		return adminFuncCon.createUser(firstName, lastName, userName, password, type, status);
+		return adminFuncController.createUser(firstName, lastName, userName, password, type, status);
 		
 	}
 	
@@ -129,39 +133,16 @@ public class AdminUI {
 	 * @return true if successfully edit profile
 	 */
 	public boolean editUserProfile(String firstName, String lastName, String userName, String password, String type, String status) {
-		return adminFuncCon.editUserProfile(firstName, lastName, userName, password, type, status);
-		
+		return adminFuncController.editUserProfile(firstName, lastName, userName, password, type, status);
 	}
 	
 	/**
-	 * Reset user's typed information in fields
-	 * @return ArrayList<String> information of user
+	 * View user's information
+	 * obtain account information from database
+	 * @return Account which contains information of the user
 	 */
-	public ArrayList<String> resetUserInfo(String username) {
-		Account newAccount = adminFuncCon.reset(username);
-		ArrayList<String> newInfo = new ArrayList<>();
-		newInfo.add(newAccount.getFirstName());
-		newInfo.add(newAccount.getLastName());
-	    newInfo.add(newAccount.getUsername());
-		newInfo.add(newAccount.getPassword());
-		newInfo.add(newAccount.getType());
-		newInfo.add(newAccount.getStatus());
-		return newInfo;
-		
-	}
-	
-	/**
-	 * View a specific user.
-	 * 
-	 * @return User the specific user want to view 
-	 */
-	public User viewSpecificUser(String username) {
-		return adminFuncCon.viewSpecificUser(username);
-	}
-	
-	/**
-	 * Confirmation message to confirm a reset.
-	 */
-	public void confirmReset(String username) {
+	public Account viewProfile(){
+		Account account = adminFuncController.getProfile(username);
+		return account;
 	}
 }

@@ -16,16 +16,16 @@ public class AdminFuncController
 {
   private AccountController accountController;
   private UniversityController universityController;
-  private Account account;
   
   /**
    * constuctor for the AdminFuncController with specific admin
    * 
    * @param admin the admin
    */
-  public AdminFuncController(Admin admin)
+  public AdminFuncController()
   {
-    this.account=admin;
+	  accountController = new AccountController();
+	  universityController = new UniversityController();
   }
   
   /**
@@ -46,7 +46,8 @@ public class AdminFuncController
    */
   public boolean deactivateUser(String username)
   {
- return accountController.deactivateAccount(username);
+	  boolean isFailed = accountController.deactivateAccount(username);
+	  return isFailed;
   }
   
   /**
@@ -57,8 +58,8 @@ public class AdminFuncController
    */
   public boolean addUniversity(ArrayList<String> schoolInfo)
   {
- universityController.createUniversity(schoolInfo);
-    return true;
+	boolean isFailed = universityController.createUniversity(schoolInfo);
+    return isFailed;
   }
   
    /**
@@ -69,7 +70,8 @@ public class AdminFuncController
    */
   public boolean editUniversityInDetailed(ArrayList<String> schoolInfo)
   {
-    return false;
+	boolean isFailed = universityController.editUniversityInDetailed(schoolInfo);
+    return isFailed;
   }
   
   /**
@@ -106,23 +108,13 @@ public class AdminFuncController
   }
   
   /**
-   * A method that reset the user info
+   * A method that get the user information
    * 
    * return account the account that has not been modified
    */
-  public Account reset(String username)
+  public Account getProfile(String username)
   {
-    return null;
-  }
-  
-  /**
-   * A method that return a specific user information
-   * 
-   * @param username the name of the user
-   * @return User the specific user want to view
-   */
-  public User viewSpecificUser(String username)
-  {
-	  return accountController.getAccountInfo(username);
+	Account account = accountController.getAccountInfo(username);  
+    return account;
   }
 }

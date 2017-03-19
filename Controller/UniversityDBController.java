@@ -12,7 +12,7 @@ import dblibrary.project.csci230.UniversityDBLibrary;
  * @author  Daniel M. Song, Anh B. Tran, Caitlin E. Harvey, Samuel J. Halloran
  * @version Mar 4, 2017
  */
-public class DBController {
+public class UniversityDBController {
 	
 	/**
 	 * University Database
@@ -22,7 +22,7 @@ public class DBController {
 	/**
 	  * Default Constructor
 	  */
-	public DBController(){
+	public UniversityDBController(){
 		dblib = new UniversityDBLibrary("dasc","dasc","csci230");
 	}
 	////////////////////////////////////////////////// leave for testing
@@ -125,78 +125,5 @@ public class DBController {
 			return true;
 		}
 		return false;
-	}
-
-	/**
-	  * Search the university with the criteria that user input the information
-	  * 
-	  * @param schoolInfo ArrayList<String> that user want to search
-	  * @return list of name of school within criteria that user input
-	  */
-	public ArrayList<String> search(ArrayList<String> schoolInfo){
-		ArrayList<String> emphases = new ArrayList<String>();
-		ArrayList<String> searched = new ArrayList<String>();
-		ArrayList<String> schoolList = new ArrayList<String>();
-		String[][] school = dblib.university_getUniversities();
-
-		for (int i = 0; i < school.length; i++) {
-			if (school[i][0].contains(schoolInfo.get(0)) && school[i][1].contains(schoolInfo.get(1))
-					&& school[i][2].contains(schoolInfo.get(2)) && school[i][3].contains(schoolInfo.get(3))
-					&& Double.parseDouble(school[i][4]) >= Double.parseDouble(schoolInfo.get(4))
-					&& Double.parseDouble(school[i][4]) <= Double.parseDouble(schoolInfo.get(5))
-					&& Double.parseDouble(school[i][5]) >= Double.parseDouble(schoolInfo.get(6))
-					&& Double.parseDouble(school[i][5]) <= Double.parseDouble(schoolInfo.get(7))
-					&& Double.parseDouble(school[i][6]) >= Double.parseDouble(schoolInfo.get(8))
-					&& Double.parseDouble(school[i][6]) <= Double.parseDouble(schoolInfo.get(9))
-					&& Double.parseDouble(school[i][7]) >= Double.parseDouble(schoolInfo.get(10))
-					&& Double.parseDouble(school[i][7]) <= Double.parseDouble(schoolInfo.get(11))
-					&& Double.parseDouble(school[i][8]) >= Double.parseDouble(schoolInfo.get(12))
-					&& Double.parseDouble(school[i][8]) <= Double.parseDouble(schoolInfo.get(13))
-					&& Double.parseDouble(school[i][9]) >= Double.parseDouble(schoolInfo.get(14))
-					&& Double.parseDouble(school[i][9]) <= Double.parseDouble(schoolInfo.get(15))
-					&& Integer.parseInt(school[i][10]) >= Integer.parseInt(schoolInfo.get(16))
-					&& Integer.parseInt(school[i][10]) <= Integer.parseInt(schoolInfo.get(17))
-					&& Double.parseDouble(school[i][11]) >= Double.parseDouble(schoolInfo.get(18))
-					&& Double.parseDouble(school[i][11]) <= Double.parseDouble(schoolInfo.get(19))
-					&& Double.parseDouble(school[i][12]) >= Double.parseDouble(schoolInfo.get(20))
-					&& Double.parseDouble(school[i][12]) <= Double.parseDouble(schoolInfo.get(21))
-					&& Integer.parseInt(school[i][13]) >= Integer.parseInt(schoolInfo.get(22))
-					&& Integer.parseInt(school[i][13]) <= Integer.parseInt(schoolInfo.get(23))
-					&& Integer.parseInt(school[i][14]) >= Integer.parseInt(schoolInfo.get(24))
-					&& Integer.parseInt(school[i][14]) <= Integer.parseInt(schoolInfo.get(25))
-					&& Integer.parseInt(school[i][15]) >= Integer.parseInt(schoolInfo.get(26))
-					&& Integer.parseInt(school[i][15]) <= Integer.parseInt(schoolInfo.get(27))) {
-				schoolList.add(school[i][0]);
-			}
-		} //////////////////////// search school without emphases
-		
-		for (int i = 28; i < schoolInfo.size(); i++) {
-			emphases.add(schoolInfo.get(i));
-		} //////////////////////// create emphases from schoolInfo to search
-		
-		if (!emphases.isEmpty()){
-			for (int i = 0; i < schoolList.size(); i++) {
-				for(int j = 0 ; j < emphases.size(); j++){
-					if (getUniversity(schoolList.get(i)).getEmphases().contains(emphases.get(j))){
-						searched.add(schoolList.get(i)); /////////////////////add school to final list that met with criteria
-					}
-				}
-			}
-		}
-		else{
-			searched = schoolList; //////////if emphases criteria is empty, then ignore it
-		}
-		return searched;
-	}
-	
-	/**
-	  * Search the university with the criteria that the university has been found
-	  * by the user
-	  * 
-	  * @param University university with the information that user found from the search
-	  * @return list of name of school within criteria
-	  */
-	public ArrayList<University> searchRecommendation(University university){
-		return null;
 	}
 }

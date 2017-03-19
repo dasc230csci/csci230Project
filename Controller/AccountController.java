@@ -19,12 +19,6 @@ public class AccountController {
   private Account account;
   
   /**
-   * DBController dbController which enable access to the database to obtain
-   * or update information of University
-   */
-  private DBController dbController;
-  
-  /**
    * AccountDBController adbController which enable access to the database to obtain
    * or update information of Account
    */
@@ -57,18 +51,10 @@ public class AccountController {
    * @return true if successfully create new Account
    */
   public boolean createAccount(String firstName, String lastName, String userName, String password, String type, String status){
-    if(type=="a"){
-      Account newAdmin = new Account(firstName, lastName, userName, password, type, status, true);
-      if(adbController.addAccount(newAdmin)==true){
+      Account account = new Account(firstName, lastName, userName, password, type, status, true);
+      if(adbController.addAccount(account)){
         return true; 
       }
-    }
-    if(type=="u"){
-      User newUser = new User(firstName, lastName, userName, password, status, true);
-      if(adbController.addUser(newUser)==true){
-        return true; 
-      }
-    }
     return false;
   }
   
@@ -91,16 +77,9 @@ public class AccountController {
     newAccount.setPassword(password);
     newAccount.setType(type);
     newAccount.setStatus(status);
-    if(type=="a"){
-      if(adbController.updateAccount(newAccount)==true){
+    if(adbController.updateAccount(newAccount)){
         return true; 
       }
-    }
-    if(type=="u"){
-      if(adbController.updateUser((User)newAccount)==true){
-        return true; 
-      }
-    }
     return false;
   }
   
@@ -118,7 +97,7 @@ public class AccountController {
     newUser.setFirstName(firstName);
     newUser.setLastName(lastName);
     newUser.setPassword(password);
-    if(adbController.updateUser(newUser)==true){
+    if(adbController.updateAccount(newUser)){
       return true; 
     }
     return false;
@@ -131,28 +110,9 @@ public class AccountController {
    * @return true if successfully edit profile
    */
   public boolean deactivateAccount(String username){
-    Account deacAccount = adbController.getAccount(username);
-    deacAccount.setStatus("deactivate");
-    if(deacAccount.getType()=="a"){
-      if(adbController.updateAccount(deacAccount)==true){
-        return true; 
-      }
-    }
-    if(deacAccount.getType()=="u"){
-      if(adbController.updateUser((User)deacAccount)==true){
-        return true; 
-      }
-    }
+    if(adbController.deactivateAccount(username))
+    	return true;
     return false;
-  }
-  
-  /**
-   * Method that reset information of the Account before edit
-   * @param username username of the Account to reset
-   * @return Account which contains information of the user
-   */
-  public Account resetAccountInfo(String username){
-    return null;
   }
   
   /**
@@ -163,8 +123,8 @@ public class AccountController {
    * @return true if Account is verified
    */
   public boolean verifyAccount(String username, String password){
-    User user = adbController.getAccount(username);
-    if(user.getPassword()==password){
+    Account account = adbController.getAccount(username);
+    if(account.getPassword().equals(password)){
       return true;
     }
     return false;
@@ -176,8 +136,8 @@ public class AccountController {
    * @return Account object returned from database
    */
   public User getAccountInfo(String username){
-    User newAccount = adbController.getAccount(username);
-    return newAccount;
+    User user = adbController.getAccount(username);
+    return user;
   }
   
   /**
@@ -193,9 +153,10 @@ public class AccountController {
    * @param schoolName name of the school want to save(add)
    * @return true if successfully saved
    */
-  public boolean saveSchool(User user, String schoolName){
+  public boolean saveSchool(String username, String schoolName){
+	User user = adbController.getAccount(username);
     user.addSavedSchool(schoolName);
-    if(adbController.updateUser(user)==true){
+    if(adbController.updateSchoolList(user)){
       return true;
     }
     return false;
@@ -206,9 +167,10 @@ public class AccountController {
    * @param schoolName name of the school want to remove
    * @return true if successfully removed
    */
-  public boolean removeSavedSchool(User user, String schoolName){
+  public boolean removeSavedSchool(String username, String schoolName){
+	User user = adbController.getAccount(username);
     user.removeSavedSchool(schoolName);
-    if(adbController.updateUser(user)==true){
+    if(adbController.updateSchoolList(user)){
       return true;
     }
     return false;

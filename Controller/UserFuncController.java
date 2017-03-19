@@ -34,16 +34,10 @@ public class UserFuncController {
  private SearchController searchController;
  
  /**
-  * Account instance variable
-  */
- private User account;
- 
- /**
   * Creates the Controller.
   */
- public UserFuncController(User account) {
-   accountController= new AccountController();
-   this.account=account;
+ public UserFuncController() {
+   accountController = new AccountController();
    universityController= new UniversityController();
  }
  
@@ -52,8 +46,8 @@ public class UserFuncController {
   * @param schoolName - Name of school to save
   * @returns true if the school is successfully saved 
   */
- public boolean saveSchool(String schoolName) {   
-   accountController.saveSchool(account, schoolName);
+ public boolean saveSchool(String username, String schoolName) {   
+   accountController.saveSchool(username, schoolName);
    return true; 
  }
  
@@ -65,8 +59,8 @@ public class UserFuncController {
   * @param password password of the user
   * @return true if successfully edit profile
   */
- public boolean editProfile(String firstName, String lastName, String password){
-   accountController.userEditProfile(account.getUsername(), firstName, lastName, password);
+ public boolean editProfile(String username, String firstName, String lastName, String password){
+   accountController.userEditProfile(username, firstName, lastName, password);
    return true;
  }
 
@@ -75,8 +69,9 @@ public class UserFuncController {
   * 
   * @return ArrayList<String> list of saved school of user
   */
- public ArrayList<String> viewSavedSchool(){
-  return account.getSavedSchool();
+ public ArrayList<String> viewSavedSchool(String username){
+  User user = accountController.getAccountInfo(username);
+  return user.getSavedSchool();
  }
  
  /**
@@ -85,18 +80,10 @@ public class UserFuncController {
   * @param schoolName name of the school to remove
   * @return true if the school is successfully removed;
   */
- public boolean removeSavedSchool(String schoolName){
-  accountController.removeSavedSchool(account, schoolName);
-  return true;
- }
- 
- /**
-  * Resets user information.
-  * 
-  * @return ArrayList<String> information of the user
-  */
- public Account resetUserInfo() {
-  return accountController.resetAccountInfo(account.getUsername());
+ public boolean removeSavedSchool(String username, String schoolName){
+  if(accountController.removeSavedSchool(username, schoolName))
+	  return true;
+  return false;
  }
  
  /**
@@ -108,4 +95,9 @@ public class UserFuncController {
  public University getUniversityInDetail(String schoolName) {
   return universityController.getUniversityInDetailed(schoolName);
  }
+ //////////////////
+ public User getProfile(String username){
+	 return accountController.getAccountInfo(username);
+ }
+ 
 }

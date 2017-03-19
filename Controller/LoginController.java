@@ -31,11 +31,8 @@ public class LoginController {
 	  */
 	 public boolean verifyUser(String username, String password){
 		 boolean verify = this.accountController.verifyAccount(username, password);
-		 if (verify == true){
+		 if (verify)
 			 return true;
-		 }
-		 else {
-			 return false;
-		 }	 
+		 return false; 
 	 }
 }

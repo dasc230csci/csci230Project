@@ -79,30 +79,6 @@ public class AccountDBController {
  }
  
  /**
-   * Update user information and store in DB
-   * 
-   * @param account Account objects that had been updated
-   * @return true if the Account information can be updated
-   */
- public boolean updateUser(User user){
-  int failed = dblib.user_editUser(user.getUsername(), user.getFirstName(), user.getLastName(), user.getPassword(), 
-    user.getType().charAt(0), user.getStatus().charAt(0));
-  ArrayList<String> oldSchoolList = getAccount(user.getUsername()).getSavedSchool();
-  ArrayList<String> newSchoolList = user.getSavedSchool();
-  for(int i =0; i < oldSchoolList.size(); i++){
-   dblib.user_removeSchool(user.getUsername(), oldSchoolList.get(i));
-  }
-  for(int i =0; i < newSchoolList.size(); i++){
-   dblib.user_saveSchool(user.getUsername(), newSchoolList.get(i));
-  }
-  if(failed != -1){
-   return true;
-  }
-  else
-   return false;
- }
- 
- /**
    * Add new Account information and store in DB
    * 
    * @param account Account objects that had been added
@@ -111,24 +87,6 @@ public class AccountDBController {
  public boolean addAccount(Account account){
   int failed = dblib.user_addUser(account.getFirstName(), account.getLastName(), account.getUsername(), 
     account.getPassword(), account.getType().charAt(0));
-  if(failed != -1){
-   return true;
-  }
-  return false;
- }
- 
- /**
-   * Add new User information and store in DB
-   * 
-   * @param account Account objects that had been added
-   * @return true if the Account information can be added
-   */
- public boolean addUser(User user){
-  int failed = dblib.user_addUser(user.getFirstName(), user.getLastName(), user.getUsername(), 
-    user.getPassword(), user.getType().charAt(0));
-  for(int i =0; i < user.getSavedSchool().size() ; i++){
-   dblib.user_saveSchool(user.getUsername(), user.getSavedSchool().get(i));
-  }
   if(failed != -1){
    return true;
   }
@@ -147,5 +105,28 @@ public class AccountDBController {
      userList.add(userInfoList[i][2]);
    }
    return userList;
+ }
+ 
+ /////////////////newly added method
+ public boolean deactivateAccount(String username){
+	 User user = this.getAccount(username);
+	 user.setStatus("N");
+	 if(this.updateAccount(user))
+		 return true;
+	 return false;
+ }
+ 
+ public boolean updateSchoolList(User user){
+	  ArrayList<String> oldSchoolList = getAccount(user.getUsername()).getSavedSchool();
+	  ArrayList<String> newSchoolList = user.getSavedSchool();
+	  if(user.getType().equals("u")){
+		  for(int i =0; i < oldSchoolList.size(); i++){
+			   dblib.user_removeSchool(user.getUsername(), oldSchoolList.get(i));
+			  }
+			  for(int i =0; i < newSchoolList.size(); i++){
+			   dblib.user_saveSchool(user.getUsername(), newSchoolList.get(i));
+			  }
+	  }
+	 return false;
  }
 }

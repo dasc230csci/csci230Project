@@ -28,19 +28,19 @@ public class UserUI{
  private SearchController searchController;
  
  /**
-  * user created in the system to interact with UI;
+  * username of the User
   */
- private User user;
+ private String username;
   
  /**
   * the constructor to create a UserUI for a specific user
   * @param user the user using the system
   */
  
- public UserUI(User user){
-   this.user=user;
+ public UserUI(String username){
    this.searchController= new SearchController();
-   this.userFuncController= new UserFuncController(this.user);
+   this.userFuncController= new UserFuncController();
+   this.username = username;
  }
 
  
@@ -50,18 +50,18 @@ public class UserUI{
    * current user signed in.
    */
   public ArrayList<String> viewSavedSchool(){
-    ArrayList<String> savedSchool = this.userFuncController.viewSavedSchool();
+    ArrayList<String> savedSchool = this.userFuncController.viewSavedSchool(username);
     return savedSchool;
-
   }
   
   /**
-   * the viewProfile() method, returns a Account object(either Student or Admin)
-   * and allows the user to alter he/shes personal profile as they 
+   * the viewProfile() method, returns a Account object(either User or Admin)
+   * and allows the user to alter his/her personal profile as they 
    * see fit.
    * @return an instance of the Users Account
    */ 
   public User viewProfile(){
+	User user = userFuncController.getProfile(username);
     return user;
   }
   
@@ -111,12 +111,8 @@ public class UserUI{
    schoolInfo.add(socialScale+"");
    schoolInfo.add(qualOfLifeScale+"");
    schoolInfo.add(emphases+"");
-   ArrayList<String> schoolNames = new ArrayList<>();
-   ArrayList<University> schoolList = searchController.search(schoolInfo);
-   for(int i=0; i< schoolList.size(); i++){
-     schoolNames.add(schoolList.get(i).getSchoolName());
-   }
-   return schoolNames;
+   ArrayList<String> schoolNames = searchController.search(schoolInfo);
+   return schoolNames; //////////////////////// Array should be changed --> see Test.java
   }
   
   /**
@@ -128,32 +124,14 @@ public class UserUI{
    * @return true if successfully edit profile
    */  
   public boolean editProfile(String firstName, String lastName, String password){
-    if(userFuncController.editProfile(firstName, lastName, password)==true){
+    if(userFuncController.editProfile(username, firstName, lastName, password)){
      return true; 
     }
    return false;
   }
   
   /**
-   * the resetUserInfo() method, sets the current account
-   * to the original defult blank profile eraseing any personal
-   * information associated with the account.
-   * @return ArrayList<String> user information
-   */
-  public ArrayList<String> resetUserInfo(){
-   Account newAccount= userFuncController.resetUserInfo();
-   ArrayList<String> newInfo = new ArrayList<>();
-   newInfo.add(newAccount.getFirstName());
-   newInfo.add(newAccount.getLastName());
-   newInfo.add(newAccount.getUsername());
-   newInfo.add(newAccount.getPassword());
-   newInfo.add(newAccount.getType());
-   newInfo.add(newAccount.getStatus());
-   return newInfo;
-  }
-  
-  /**
-   * the saveScool() method, sends the University choosen
+   * the saveScool() method, sends the University chosen
    * to be saved to the savedSchools array list 
    * that is saved for the user.
    * 
@@ -161,7 +139,7 @@ public class UserUI{
    * @returns true if the school is successfully saved 
    */
   public boolean saveSchool(String schoolName){
-    if(userFuncController.saveSchool(schoolName)==true){
+    if(userFuncController.saveSchool(username, schoolName)){
       return true;
     }
    return false;
@@ -176,7 +154,7 @@ public class UserUI{
    * @returns true if the school successfully removed 
    */ 
   public boolean removeSavedUniversity(String schoolName){
-    if(userFuncController.removeSavedSchool(schoolName)==true){
+    if(userFuncController.removeSavedSchool(username, schoolName)){
       return true;
     }
     return false;
@@ -184,7 +162,7 @@ public class UserUI{
   
   /**
    * the viewUniversityInDetail() method, displays all the previously
-   * hidden information about the schools acedemics and other
+   * hidden information about the schools academics and other
    * statistics users may find useful
    * 
    * @param schoolName name of the school to be saved
@@ -211,15 +189,5 @@ public class UserUI{
    schoolInfo.add(university.getEmphases()+"");
    schoolInfo.add(university.getPerFinanAid()+"");
    return schoolInfo;
-  }
-  
-  /**
-   * the resetSchoolSearchForm() method, after a search is conducted,
-   * the search criteria fields are cleared to become ready to 
-   * execute another search whenever.
-   * @returns true if successfully reset
-   */
-  public boolean resetSchoolSearchForm(){
-   return false;
   }
 }

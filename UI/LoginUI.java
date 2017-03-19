@@ -20,18 +20,6 @@ public class LoginUI {
  private LoginController loginController;
  
  /**
-  * UserUI to call the UserUI class once the system
-  * identified if the person is user.
-  */
- private UserUI userUI;
- 
-  /**
-  * AdminUI to call the AdminUI class once the system
-  * identified if the person is admin.
-  */
- private AdminUI adminUI;
- 
- /**
   * Verifying whether the user is valid to access
   * 
   * @param name username of the user
@@ -42,11 +30,8 @@ public class LoginUI {
 	 //method needs to take user login info parameters to pass along to LoginController method
 	 this.loginController = new LoginController();
 	 boolean verify = this.loginController.verifyUser(username, password);
-	 if (verify == true) {
+	 if (verify)
 		 return true;
-	 }
-	 else {
-		 return false;
-	 }
+	 return false;
  }
 }
