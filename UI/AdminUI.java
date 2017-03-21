@@ -37,9 +37,8 @@ public class AdminUI {
 	 * View a list of all users.
 	 * @return ArrayList<String> list of all users
 	 */
-	public ArrayList<String> viewAllUser() {
-		ArrayList<String> userList = this.adminFuncController.viewAllUser();
-		return userList;
+	public ArrayList<Account> viewAllUser() {
+		return adminFuncController.viewAllUser();
 	}
 	
 	/**

@@ -14,7 +14,14 @@ import Entity.*;
  */
 public class AdminFuncController
 {
+  /**
+   * AccountController to add, edit or get account or user	
+   */
   private AccountController accountController;
+  
+  /**
+   * UniversityController to add, edit or get university
+   */
   private UniversityController universityController;
   
   /**
@@ -33,9 +40,9 @@ public class AdminFuncController
    * 
    * @return the list of user names
    */
-  public ArrayList<String> viewAllUser()
+  public ArrayList<Account> viewAllUser()
   {
-   return accountController.getUsernameList();
+   return accountController.getAccountList();
   }
   
   /**

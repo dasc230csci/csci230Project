@@ -19,6 +19,10 @@ public class LoginUI {
   */
  private LoginController loginController;
  
+ public LoginUI(){
+	 this.loginController = new LoginController();
+ }
+ 
  /**
   * Verifying whether the user is valid to access
   * 
@@ -26,12 +30,9 @@ public class LoginUI {
   * @param password of the user
   * @return true if successfully verified
   */
- public boolean verifyUser(String username, String password){
+ public String verifyUser(String username, String password){
 	 //method needs to take user login info parameters to pass along to LoginController method
-	 this.loginController = new LoginController();
-	 boolean verify = this.loginController.verifyUser(username, password);
-	 if (verify)
-		 return true;
-	 return false;
+	 String verify = this.loginController.verifyUser(username, password);
+	 return verify;
  }
 }

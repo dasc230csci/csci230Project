@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import Entity.*;
 import dblibrary.project.csci230.UniversityDBLibrary;
-
 /**
  * This class is for managing DB which it enables to update, add, get information of
  * User or University
@@ -40,9 +39,6 @@ public class UniversityDBController {
 		}
 		else
 			return false;
-	}
-	public UniversityDBLibrary getDB(){
-		return this.dblib;
 	}
 	///////////////////////////////////////////////////
 	/**
@@ -125,5 +121,33 @@ public class UniversityDBController {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Get the list of all universities in database
+	 * 
+	 * @return ArrayList<University> ArrayList that contains university objects
+	 */
+	public ArrayList<University> getUniversityList(){
+		
+		ArrayList<University> schoolInfo = new ArrayList<University>();
+		String[][] school = dblib.university_getUniversities();
+		String[][] empArr = dblib.university_getNamesWithEmphases();
+		
+		for(int i =0 ; i < school.length; i++){
+			ArrayList<String> emphases = new ArrayList<String>();
+			for(int j = 0; j < empArr.length; j++){
+				if(empArr[j][0].equals(school[i][0])){
+					emphases.add(empArr[j][1]);
+				}
+			}
+			University university = new University(school[i][0],school[i][1],school[i][2],school[i][3],Integer.parseInt(school[i][4]),
+					Double.parseDouble(school[i][5]),Double.parseDouble(school[i][6]),Double.parseDouble(school[i][7]),
+					Double.parseDouble(school[i][8]),Double.parseDouble(school[i][9]),Integer.parseInt(school[i][10]),
+					Double.parseDouble(school[i][11]),Double.parseDouble(school[i][12]),Integer.parseInt(school[i][13]),
+					Integer.parseInt(school[i][14]),Integer.parseInt(school[i][15]),emphases);
+			schoolInfo.add(university);
+		}
+		return schoolInfo;
 	}
 }

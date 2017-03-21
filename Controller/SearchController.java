@@ -25,10 +25,6 @@ public class SearchController{
 	 */
 	private UniversityDBController universityDBController;
 	
-	/**
-	 * ArrayList<String> to save searched school list
-	 */
-	private ArrayList<String> searchedSchool;
   
   /**
    * the default constructor method for the search controller 
@@ -51,40 +47,42 @@ public class SearchController{
    * @param ArrayList<String> information of the school to search
    * @return a collection of University objects
    */
-  public ArrayList<String> search(ArrayList<String> schoolInfo){
+  public ArrayList<University> search(ArrayList<String> schoolInfo){
 	  ArrayList<String> emphases = new ArrayList<String>();
-		ArrayList<String> searched = new ArrayList<String>();
-		ArrayList<String> schoolList = new ArrayList<String>();
-		String[][] school = universityDBController.getDB().university_getUniversities();
+		ArrayList<University> searched = new ArrayList<University>();
+		ArrayList<University> schoolList = new ArrayList<University>();
+		ArrayList<University> universityList = universityDBController.getUniversityList();
 
-		for (int i = 0; i < school.length; i++) {
-			if (school[i][0].contains(schoolInfo.get(0)) && school[i][1].contains(schoolInfo.get(1))
-					&& school[i][2].contains(schoolInfo.get(2)) && school[i][3].contains(schoolInfo.get(3))
-					&& Double.parseDouble(school[i][4]) >= Double.parseDouble(schoolInfo.get(4))
-					&& Double.parseDouble(school[i][4]) <= Double.parseDouble(schoolInfo.get(5))
-					&& Double.parseDouble(school[i][5]) >= Double.parseDouble(schoolInfo.get(6))
-					&& Double.parseDouble(school[i][5]) <= Double.parseDouble(schoolInfo.get(7))
-					&& Double.parseDouble(school[i][6]) >= Double.parseDouble(schoolInfo.get(8))
-					&& Double.parseDouble(school[i][6]) <= Double.parseDouble(schoolInfo.get(9))
-					&& Double.parseDouble(school[i][7]) >= Double.parseDouble(schoolInfo.get(10))
-					&& Double.parseDouble(school[i][7]) <= Double.parseDouble(schoolInfo.get(11))
-					&& Double.parseDouble(school[i][8]) >= Double.parseDouble(schoolInfo.get(12))
-					&& Double.parseDouble(school[i][8]) <= Double.parseDouble(schoolInfo.get(13))
-					&& Double.parseDouble(school[i][9]) >= Double.parseDouble(schoolInfo.get(14))
-					&& Double.parseDouble(school[i][9]) <= Double.parseDouble(schoolInfo.get(15))
-					&& Integer.parseInt(school[i][10]) >= Integer.parseInt(schoolInfo.get(16))
-					&& Integer.parseInt(school[i][10]) <= Integer.parseInt(schoolInfo.get(17))
-					&& Double.parseDouble(school[i][11]) >= Double.parseDouble(schoolInfo.get(18))
-					&& Double.parseDouble(school[i][11]) <= Double.parseDouble(schoolInfo.get(19))
-					&& Double.parseDouble(school[i][12]) >= Double.parseDouble(schoolInfo.get(20))
-					&& Double.parseDouble(school[i][12]) <= Double.parseDouble(schoolInfo.get(21))
-					&& Integer.parseInt(school[i][13]) >= Integer.parseInt(schoolInfo.get(22))
-					&& Integer.parseInt(school[i][13]) <= Integer.parseInt(schoolInfo.get(23))
-					&& Integer.parseInt(school[i][14]) >= Integer.parseInt(schoolInfo.get(24))
-					&& Integer.parseInt(school[i][14]) <= Integer.parseInt(schoolInfo.get(25))
-					&& Integer.parseInt(school[i][15]) >= Integer.parseInt(schoolInfo.get(26))
-					&& Integer.parseInt(school[i][15]) <= Integer.parseInt(schoolInfo.get(27))) {
-				schoolList.add(school[i][0]);
+		for (int i = 0; i < universityList.size(); i++) {
+			if (universityList.get(i).getSchoolName().contains(schoolInfo.get(0))
+					&& universityList.get(i).getState().contains(schoolInfo.get(1))
+					&& universityList.get(i).getLocation().contains(schoolInfo.get(2))
+					&& universityList.get(i).getControl().contains(schoolInfo.get(3))
+					&& universityList.get(i).getNumOfEnrolled() >= Double.parseDouble(schoolInfo.get(4))
+					&& universityList.get(i).getNumOfEnrolled() <= Double.parseDouble(schoolInfo.get(5))
+					&& universityList.get(i).getFemaleRatio() >= Double.parseDouble(schoolInfo.get(6))
+					&& universityList.get(i).getFemaleRatio() <= Double.parseDouble(schoolInfo.get(7))
+					&& universityList.get(i).getSatVerbal() >= Double.parseDouble(schoolInfo.get(8))
+					&& universityList.get(i).getSatVerbal() <= Double.parseDouble(schoolInfo.get(9))
+					&& universityList.get(i).getSatMath() >= Double.parseDouble(schoolInfo.get(10))
+					&& universityList.get(i).getSatMath() <= Double.parseDouble(schoolInfo.get(11))
+					&& universityList.get(i).getExpenses() >= Double.parseDouble(schoolInfo.get(12))
+					&& universityList.get(i).getExpenses() <= Double.parseDouble(schoolInfo.get(13))
+					&& universityList.get(i).getPerFinanAid() >= Double.parseDouble(schoolInfo.get(14))
+					&& universityList.get(i).getPerFinanAid() <= Double.parseDouble(schoolInfo.get(15))
+					&& universityList.get(i).getTotNumOfApplicant() >= Integer.parseInt(schoolInfo.get(16))
+					&& universityList.get(i).getTotNumOfApplicant() <= Integer.parseInt(schoolInfo.get(17))
+					&& universityList.get(i).getPerAdmitted() >= Double.parseDouble(schoolInfo.get(18))
+					&& universityList.get(i).getPerAdmitted() <= Double.parseDouble(schoolInfo.get(19))
+					&& universityList.get(i).getPerEnrolled() >= Double.parseDouble(schoolInfo.get(20))
+					&& universityList.get(i).getPerEnrolled() <= Double.parseDouble(schoolInfo.get(21))
+					&& universityList.get(i).getAcademicsScale() >= Integer.parseInt(schoolInfo.get(22))
+					&& universityList.get(i).getAcademicsScale() <= Integer.parseInt(schoolInfo.get(23))
+					&& universityList.get(i).getSocialScale() >= Integer.parseInt(schoolInfo.get(24))
+					&& universityList.get(i).getSocialScale() <= Integer.parseInt(schoolInfo.get(25))
+					&& universityList.get(i).getQualOfLifeScale() >= Integer.parseInt(schoolInfo.get(26))
+					&& universityList.get(i).getQualOfLifeScale() <= Integer.parseInt(schoolInfo.get(27))) {
+				schoolList.add(universityList.get(i));
 			}
 		} //////////////////////// search school without emphases
 		
@@ -95,7 +93,7 @@ public class SearchController{
 		if (!emphases.isEmpty()){
 			for (int i = 0; i < schoolList.size(); i++) {
 				for(int j = 0 ; j < emphases.size(); j++){
-					if (universityDBController.getUniversity(schoolList.get(i)).getEmphases().contains(emphases.get(j))){
+					if (schoolList.get(i).getEmphases().contains(emphases.get(j))){
 						searched.add(schoolList.get(i)); /////////////////////add school to final list that met with criteria
 					}
 				}
@@ -114,72 +112,81 @@ public class SearchController{
    * @param ArrayList<String> information of the school to search recommendation
    * @return a collection of 5 university objects
    */
-	public ArrayList<University> searchRecomendations(ArrayList<String> schoolInfo) {
-		University univ = universityDBController.getUniversity("ST JOHNS UNIVERSITY");
-		ArrayList<University> recommendationList = new ArrayList<University>();
-		HashMap<String, Double> map = new HashMap<String, Double>();
-		String[][] str = universityDBController.getDB().university_getUniversities();
+	public ArrayList<University> searchRecomendations(University university){
+		UniversityDBController db = new UniversityDBController();
+		ArrayList<University> uni = db.getUniversityList();
+		ArrayList<Double> max = new ArrayList<Double>();
+		ArrayList<Double> min = new ArrayList<Double>();
+		ArrayList<Double> diff = new ArrayList<Double>();
+		ArrayList<University> recommendation = new ArrayList<University>();
+		double dist = 0.0;
+		HashMap<University, Double> sorted = new HashMap<University, Double>();
 		
-		for (int i = 0; i < str.length; i++) {
-			double dist = findDiff(univ.getState(), str[i][1]) + findDiff(univ.getLocation(), str[i][2])
-					+ findDiff(univ.getControl(), str[i][3]) + findDiff(univ.getNumOfEnrolled(), i, 4, str)
-					+ findDiff(univ.getFemaleRatio(), i, 5, str) + findDiff(univ.getSatVerbal(), i, 6, str)
-					+ findDiff(univ.getSatMath(), i, 7, str) + findDiff(univ.getExpenses(), i, 8, str)
-					+ findDiff(univ.getPerFinanAid(), i, 9, str) + findDiff(univ.getTotNumOfApplicant(), i, 10, str)
-					+ findDiff(univ.getPerAdmitted(), i, 11, str) + findDiff(univ.getPerEnrolled(), i, 12, str)
-					+ findDiff(univ.getAcademicsScale(), i, 13, str) + findDiff(univ.getSocialScale(), i, 14, str)
-					+ findDiff(univ.getQualOfLifeScale(), i, 15, str);			
-				map.put(str[i][0], dist);
-		}
-		Iterator it = sortByValue(map).iterator();
+		for(int i =0; i < 12; i++){
+			max.add(0.0);
+			min.add(0.0);
+		}/////initialize max min array
 		
-		for(int i =0; i < 5 ; i++){
-			String schoolName = (String) it.next();
-			University recommendation = universityDBController.getUniversity(schoolName);
-			recommendationList.add(recommendation);
-		}
+		for(int i = 0; i < uni.size(); i++){
+			max.set(0, Math.max(max.get(0), uni.get(i).getNumOfEnrolled()));
+			min.set(0, Math.min(min.get(0), uni.get(i).getNumOfEnrolled()));
+			max.set(1, Math.max(max.get(1), uni.get(i).getFemaleRatio()));
+			min.set(1, Math.min(max.get(1), uni.get(i).getFemaleRatio()));
+			max.set(2, Math.max(max.get(2), uni.get(i).getSatVerbal()));
+			min.set(2, Math.min(min.get(2), uni.get(i).getSatVerbal()));
+			max.set(3, Math.max(max.get(3), uni.get(i).getSatMath()));
+			min.set(3, Math.min(min.get(3), uni.get(i).getSatMath()));
+			max.set(4, Math.max(max.get(4), uni.get(i).getExpenses()));
+			min.set(4, Math.min(min.get(4), uni.get(i).getExpenses()));
+			max.set(5, Math.max(max.get(5), uni.get(i).getPerFinanAid()));
+			min.set(5, Math.min(min.get(5), uni.get(i).getPerFinanAid()));
+			max.set(6, Math.max(max.get(6), uni.get(i).getTotNumOfApplicant()));
+			min.set(6, Math.min(min.get(6), uni.get(i).getTotNumOfApplicant()));
+			max.set(7, Math.max(max.get(7), uni.get(i).getPerAdmitted()));
+			min.set(7, Math.min(min.get(7), uni.get(i).getPerAdmitted()));
+			max.set(8, Math.max(max.get(8), uni.get(i).getPerEnrolled()));
+			min.set(8, Math.min(min.get(8), uni.get(i).getPerEnrolled()));
+			max.set(9, Math.max(max.get(9), uni.get(i).getAcademicsScale()));
+			min.set(9, Math.min(min.get(9), uni.get(i).getAcademicsScale()));
+			max.set(10, Math.max(max.get(10), uni.get(i).getSocialScale()));
+			min.set(10, Math.min(min.get(10), uni.get(i).getSocialScale()));
+			max.set(11, Math.max(max.get(11), uni.get(i).getQualOfLifeScale()));
+			min.set(11, Math.min(min.get(11), uni.get(i).getQualOfLifeScale()));
+		}////find max and min from db
+		for(int i =0; i < max.size(); i++){
+			diff.add(max.get(i)-min.get(i));
+		}/// calculate difference of max and min
+		for(int i =0; i < uni.size(); i++){
+			dist = Math.abs((university.getNumOfEnrolled() - uni.get(i).getNumOfEnrolled()))/diff.get(0) 
+					+ Math.abs((university.getFemaleRatio() - uni.get(i).getFemaleRatio()))/diff.get(1)
+					+ Math.abs((university.getSatVerbal() - uni.get(i).getSatVerbal()))/diff.get(2)
+					+ Math.abs((university.getSatMath() - uni.get(i).getSatMath()))/diff.get(3)
+					+ Math.abs((university.getExpenses() - uni.get(i).getExpenses()))/diff.get(4)
+					+ Math.abs((university.getPerFinanAid() - uni.get(i).getPerFinanAid()))/diff.get(5)
+					+ Math.abs((university.getTotNumOfApplicant() - uni.get(i).getTotNumOfApplicant()))/diff.get(6)
+					+ Math.abs((university.getPerAdmitted() - uni.get(i).getPerAdmitted()))/diff.get(7)
+					+ Math.abs((university.getPerEnrolled() - uni.get(i).getPerEnrolled()))/diff.get(8)
+					+ Math.abs((university.getAcademicsScale() - uni.get(i).getAcademicsScale()))/diff.get(9)
+					+ Math.abs((university.getSocialScale() - uni.get(i).getSocialScale()))/diff.get(10)
+					+ Math.abs((university.getQualOfLifeScale() - uni.get(i).getQualOfLifeScale()))/diff.get(11);
+			if(university.getState().equals(uni.get(i).getState())){
+				dist +=1.0;
+			}
+			if(university.getLocation().equals(uni.get(i).getLocation())){
+				dist +=1.0;
+			}
+			if(university.getControl().equals(uni.get(i).getControl())){
+				dist +=1.0;
+			}
+			sorted.put(uni.get(i),dist);
+		}////// calculate distance of original school and other school to find recommendation
 		
-		return recommendationList;
-	}
-  ////////////////////////////////////////newly added method
-  public double findMaxMin(int fix, String[][] str) {
-		double max = 0;
-		double min = 0;
-		for (int i = 0; i < str.length; i++) {
-			if (Double.parseDouble(str[i][fix]) >= max) {
-				max = Double.parseDouble(str[i][fix]);
-			}
+		Iterator it = sortByValue(sorted).iterator(); /////sorting university
+		
+		for(int i =0; i < 5; i++){
+			recommendation.add((University) it.next());
 		}
-		for (int i = 0; i < str.length; i++) {
-			if (Double.parseDouble(str[i][fix]) <= min) {
-				min = Double.parseDouble(str[i][fix]);
-			}
-		}
-		return Math.abs(max - min);
-	}
-
-	public static int findDiff(String origin, String compare) {
-		int diff = 0;
-		if (origin.equals(compare)) {
-			diff = 1;
-		}
-		return diff;
-	}
-
-	public static double findDiff(double origin, int front, int rear, String[][] str) {
-		double max = 0;
-		double min = 0;
-		for (int i = 0; i < str.length; i++) {
-			if (Double.parseDouble(str[i][rear]) >= max) {
-				max = Double.parseDouble(str[i][rear]);
-			}
-		}
-		for (int i = 0; i < str.length; i++) {
-			if (Double.parseDouble(str[i][rear]) <= min) {
-				min = Double.parseDouble(str[i][rear]);
-			}
-		}
-		return Math.abs(origin - Double.parseDouble(str[front][rear])) / Math.abs(max - min);
+		return recommendation;
 	}
 	
 	public static List sortByValue(final Map map) {

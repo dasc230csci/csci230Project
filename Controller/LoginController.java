@@ -29,10 +29,8 @@ public class LoginController {
 	  * @param password of the user
 	  * @return true if valid user logging in
 	  */
-	 public boolean verifyUser(String username, String password){
-		 boolean verify = this.accountController.verifyAccount(username, password);
-		 if (verify)
-			 return true;
-		 return false; 
+	 public String verifyUser(String username, String password){
+		 String verify = this.accountController.verifyAccount(username, password);
+		 return verify; 
 	 }
 }

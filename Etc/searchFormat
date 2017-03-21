@@ -1,0 +1,36 @@
+schoolInfo.add("ST");// SCHOOL 0
+		schoolInfo.add("");// STATE
+		schoolInfo.add("");// LOC
+		schoolInfo.add("");// CONTRO 3
+		schoolInfo.add("0");// #STUDENT_LEAST 0 IF NULL 4
+		schoolInfo.add("100000");// #STUDENT_MOST INFINITE IF NULL 5
+		schoolInfo.add("0");// %FEMALE_LEAST 0 IF NULL 6
+		schoolInfo.add("100");// %FEMALE_MOST INFINTE IF NULL 7 
+		schoolInfo.add("0");// SATVERB_LEAST 8
+		schoolInfo.add("800");// SATVERB_MOST 9
+		schoolInfo.add("0");// SATMATH_LEAST 10
+		schoolInfo.add("800");// SATMATH_MOST 11
+		schoolInfo.add("0");// EXPENSES_LEAST 12 
+		schoolInfo.add("100000");// EXPENSES_MOST 13
+		schoolInfo.add("0");// %FINANAID_LEAST 14
+		schoolInfo.add("100");// %FINANAID_MOST 15
+		schoolInfo.add("0");// #APPLICANTS_LEAST 16
+		schoolInfo.add("1000000");// #APPLICANTS_MOST 17
+		schoolInfo.add("0");// %ADMIT_LEAST 18
+		schoolInfo.add("100");// %ADMIT_MOST 19
+		schoolInfo.add("0");// %ENROLL_LEAST 20
+		schoolInfo.add("100");// %ENROLL_MOST 21
+		schoolInfo.add("0");// ACA_SCALE_LEAST 22
+		schoolInfo.add("5");// ACA_SCALE_MOST 23
+		schoolInfo.add("0");// SOC_SCALE_LEAST 24
+		schoolInfo.add("5");// SOC_SCALE_MOST 25
+		schoolInfo.add("0");// LIFE_SCALE_LEAST 26 
+		schoolInfo.add("5");// LIFE_SCALE_MOST 27
+		schoolInfo.add("FINE-ARTS");// EMPHASES #1 28
+		schoolInfo.add("BIOLOGY");// EMPHASES #2
+		//schoolInfo.add("");// EMPHASES #3
+		//schoolInfo.add("");// EMPHASES #4
+		//schoolInfo.add("");// EMPHASES #5 32
+		////////////////////////////basic ArrayList structure for search. ArrayList must have 27 entries for now
+		/////// all Entries except for emphases cannot be null, which means if the input value is null, then it must have default value
+		////standard format for search method

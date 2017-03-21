@@ -11,12 +11,7 @@ import Entity.*;
  * @author  Daniel M. Song, Anh B. Tran, Caitlin E. Harvey, Samuel J. Halloran
  * @version Feburary 27, 2017
  */
-public class AccountController {
-  
-  /**
-   * Account account which contains information of account
-   */
-  private Account account;
+public class AccountController{  
   
   /**
    * AccountDBController adbController which enable access to the database to obtain
@@ -28,16 +23,9 @@ public class AccountController {
    * Default Constructor
    */
   public AccountController(){
+	  this.adbController = new AccountDBController();
   }
-  
-  /**
-   * Account constructor which has Account object to edit information
-   * @param account to edit information
-   */
-  public AccountController(Account account){
-    this.account = account;
-    this.adbController = new AccountDBController();
-  }
+ 
   /**
    * Method that create new Account with specified information
    * and save into database
@@ -51,7 +39,7 @@ public class AccountController {
    * @return true if successfully create new Account
    */
   public boolean createAccount(String firstName, String lastName, String userName, String password, String type, String status){
-      Account account = new Account(firstName, lastName, userName, password, type, status, true);
+      Account account = new Account(firstName, lastName, userName, password, type, status, false);
       if(adbController.addAccount(account)){
         return true; 
       }
@@ -93,11 +81,11 @@ public class AccountController {
    * @return true if successfully edit profile
    */
   public boolean userEditProfile(String username, String firstName, String lastName, String password){
-    User newUser = adbController.getAccount(username);
-    newUser.setFirstName(firstName);
-    newUser.setLastName(lastName);
-    newUser.setPassword(password);
-    if(adbController.updateAccount(newUser)){
+    Account newAccount = adbController.getAccount(username);
+    newAccount.setFirstName(firstName);
+    newAccount.setLastName(lastName);
+    newAccount.setPassword(password);
+    if(adbController.updateAccount(newAccount)){
       return true; 
     }
     return false;
@@ -122,12 +110,12 @@ public class AccountController {
    * @param password password of the Account to verify
    * @return true if Account is verified
    */
-  public boolean verifyAccount(String username, String password){
+  public String verifyAccount(String username, String password){
     Account account = adbController.getAccount(username);
     if(account.getPassword().equals(password)){
-      return true;
+      return account.getType();
     }
-    return false;
+    return "failed";
   }
   
   /**
@@ -142,10 +130,10 @@ public class AccountController {
   
   /**
    * Method that get all the users in database for admin
-   * @return ArrayList<String> list of all users in database
+   * @return ArrayList<Account> list of all users in database
    */
-  public ArrayList<String> getUsernameList(){
-    return adbController.getUsernameList();
+  public ArrayList<Account> getAccountList(){
+    return adbController.getAccountList();
   }
   
   /**

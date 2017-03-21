@@ -6,7 +6,6 @@ package Controller;
 
 import java.util.ArrayList;
 
-import Entity.Account;
 import Entity.User;
 import Entity.University;
 
@@ -95,7 +94,52 @@ public class UserFuncController {
  public University getUniversityInDetail(String schoolName) {
   return universityController.getUniversityInDetailed(schoolName);
  }
- //////////////////
+ 
+/**
+ * Search schools based on the criteria that
+ * user provided
+ * @param criteria that user provided
+ * @return ArrayList<University> completed search list of school
+ */
+ public ArrayList<University> search(ArrayList<String> criteria){
+	 for(int i =0; i< criteria.size(); i++){
+		 if(i == 4 || i == 6 || i == 8 || i == 10 || i == 12 || i == 14 || i == 16 
+				 || i == 18 || i ==20 || i == 22 || i ==24){
+			 if(criteria.get(i).equals("")){
+				 criteria.set(i, "0");
+			 }
+		 }////////////Set Minimum value to 0 if criteria is empty
+		 else if(i == 5 || i == 13 || i == 17){
+			 if(criteria.get(i).equals("")){
+				 criteria.set(i, "1000000");
+			 }
+		 }///////////Set max value to 1000000 if criteria is empty
+		 else if(i == 7 || i == 15 || i == 19 || i == 21){
+			 if(criteria.get(i).equals("")){
+				 criteria.set(i, "100");
+			 }
+		 }///////////Set Minimum value to 0 if criteria is empty(percentage)
+		 else if(i == 9 || i == 11){
+			 if(criteria.get(i).equals("")){
+				 criteria.set(i, "800");
+			 }
+		 }///////////Set Max value to 800 if criteria is empty(SAT score)
+		 else if(i == 23 || i == 25 || i == 27){
+			 if(criteria.get(i).equals("")){
+				 criteria.set(i, "5");
+			 }
+		 }///////////Set Max value to 5 if criteria is empty(scale)
+	 }
+  ArrayList<University> searched = searchController.search(criteria);
+  return searched;
+ }
+ 
+ /**
+  * Get profile of user using username
+  * 
+  * @param username of the user to get User object
+  * @return User user object
+  */
  public User getProfile(String username){
 	 return accountController.getAccountInfo(username);
  }

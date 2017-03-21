@@ -6,7 +6,7 @@ import Entity.Account;
 import Entity.User;
 import dblibrary.project.csci230.UniversityDBLibrary;
 
-
+//add getAllUsers List<Account>
 /**
  * This class is for managing DB which it enables to update, add, get information of
  * User or University
@@ -29,39 +29,19 @@ public class AccountDBController {
   return dblib;
  }
  public void deleteUser(String username){
-  ArrayList<String> oldList = getAccount(username).getSavedSchool();
-  for(int i=0; i < oldList.size(); i++){
-   dblib.user_removeSchool(username, oldList.get(i));
+  String[][] savedSchool = dblib.user_getUsernamesWithSavedSchools();
+	 ArrayList<String> oldSchoolList = new ArrayList<String>();
+	 for(int i =0 ; i< savedSchool.length; i++){
+		  if(savedSchool[i][0].equals(username)){
+		   oldSchoolList.add(savedSchool[i][1]);
+		  }
+	 }
+  for(int i=0; i < oldSchoolList.size(); i++){
+   dblib.user_removeSchool(username, oldSchoolList.get(i));
   }
   dblib.user_deleteUser(username);
  }
 //////////////////////////////////////////////////////////////////
- 
- /**
-   * Obtain Account object from the database
-   * Searching by username
-   * 
-   * @param name username of the user
-   * @return corresponding Account object
-   */
- public User getAccount(String username){
-  String[][] account = dblib.user_getUsers();
-  String[][] savedSchool = dblib.user_getUsernamesWithSavedSchools();
-  User user = null;
-  
-  for(int i =0; i < account.length ;i++){
-   if(account[i][2].equals(username)){
-    user = new User(account[i][0], account[i][1], account[i][2], account[i][3], account[i][5],false);
-   }
-  }
-  for(int i =0 ; i< savedSchool.length; i++){
-   if(savedSchool[i][0].equals(user.getUsername())){
-    user.addSavedSchool(savedSchool[i][1]);
-   }
-  }
-  return user;
- }
- 
  /**
    * Update Account information and store in DB
    * 
@@ -77,7 +57,30 @@ public class AccountDBController {
   else
    return false;
  }
+ /**
+  * Obtain Account object from the database
+  * Searching by username
+  * 
+  * @param name username of the user
+  * @return corresponding Account object
+  */
+public User getAccount(String username){
+ String[][] account = dblib.user_getUsers();
+ String[][] savedSchool = dblib.user_getUsernamesWithSavedSchools();
+ User user = null;
  
+ for(int i =0; i < account.length ;i++){
+  if(account[i][2].equals(username)){
+   user = new User(account[i][0], account[i][1], account[i][2], account[i][3], account[i][5],false);
+  }
+ }
+ for(int i =0 ; i< savedSchool.length; i++){
+  if(savedSchool[i][0].equals(user.getUsername())){
+   user.addSavedSchool(savedSchool[i][1]);
+  }
+ }
+ return user;
+}
  /**
    * Add new Account information and store in DB
    * 
@@ -94,39 +97,62 @@ public class AccountDBController {
  }
  
  /**
-  * return a list of all user in the record.
+  * return a list of all user in database.
   * 
-  * @return ArrayList<String> a list of all user
+  * @return ArrayList<Account> list of all account
   */
- public ArrayList<String> getUsernameList(){
-   String[][] userInfoList = dblib.user_getUsers();
-   ArrayList<String> userList = new ArrayList<>();
-   for(int i=0; i<userInfoList.length; i++){
-     userList.add(userInfoList[i][2]);
+ public ArrayList<Account> getAccountList(){
+   String[][] userList = dblib.user_getUsers();
+   ArrayList<Account> accountList = new ArrayList<Account>();
+   for(int i=0; i<userList.length; i++){
+	Account account = new Account(userList[i][0], userList[i][1], userList[i][2], userList[i][3], userList[i][4], userList[i][5], false);
+     accountList.add(account);
    }
-   return userList;
+   return accountList;
  }
  
- /////////////////newly added method
+ /**
+  * Deactivate user from database
+  * Set status of user to "N" which represent deactivated
+  * @param username to deactivate
+  * @return true if successfully deactivate user
+  */
  public boolean deactivateAccount(String username){
-	 User user = this.getAccount(username);
-	 user.setStatus("N");
-	 if(this.updateAccount(user))
-		 return true;
+	 ArrayList<Account> list = getAccountList();
+	 for(int i=0; i< list.size(); i++){
+		 if(list.get(i).getUsername().equals(username)){
+			 Account account = list.get(i);
+			 account.setStatus("N");
+			 return this.updateAccount(account);		 
+		 }
+	 }
 	 return false;
  }
  
+ /**
+  * Update the list of school of the user
+  * to the database
+  * @param user to update school list
+  * @return true if successfully update school list
+  */
  public boolean updateSchoolList(User user){
-	  ArrayList<String> oldSchoolList = getAccount(user.getUsername()).getSavedSchool();
+	 int isRemoved = 0, isSaved = 0;
+	 String[][] savedSchool = dblib.user_getUsernamesWithSavedSchools();
+	 ArrayList<String> oldSchoolList = new ArrayList<String>();
+	 for(int i =0 ; i< savedSchool.length; i++){
+		  if(savedSchool[i][0].equals(user.getUsername())){
+		   oldSchoolList.add(savedSchool[i][1]);
+		  }
+	 }
 	  ArrayList<String> newSchoolList = user.getSavedSchool();
-	  if(user.getType().equals("u")){
-		  for(int i =0; i < oldSchoolList.size(); i++){
-			   dblib.user_removeSchool(user.getUsername(), oldSchoolList.get(i));
-			  }
-			  for(int i =0; i < newSchoolList.size(); i++){
-			   dblib.user_saveSchool(user.getUsername(), newSchoolList.get(i));
-			  }
-	  }
+	  for(int i =0; i < oldSchoolList.size(); i++){
+		  isRemoved = dblib.user_removeSchool(user.getUsername(), oldSchoolList.get(i));
+		  }
+	  for(int i =0; i < newSchoolList.size(); i++){
+		  isSaved = dblib.user_saveSchool(user.getUsername(), newSchoolList.get(i));
+		  }
+	  if(isRemoved == 1 && isSaved == 1)
+		  return true;
 	 return false;
  }
 }
