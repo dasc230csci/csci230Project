@@ -92,9 +92,9 @@ public class AdminFuncController
    * @param status activate or not
    * @return boolean if the user is added or not
    */
-  public boolean createUser(String firstName, String lastName, String userName, String password, String type, String status)
+  public boolean createUser(String firstName, String lastName, String username, String password, String type, String status)
   {
-  accountController.createAccount(firstName, lastName, userName, password, type, status);
+  accountController.createAccount(firstName, lastName, username, password, type, status);
   return true;
   }
   
