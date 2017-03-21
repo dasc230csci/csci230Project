@@ -122,8 +122,8 @@ public class AdminUI {
 	 * Create a new user.
 	 * @return true if successfully create new user
 	 */
-	public boolean createUser(String firstName, String lastName, String username, String password, String type, String status) {
-		return adminFuncController.createUser(firstName, lastName, username, password, type, status);
+	public boolean createUser(String firstName, String lastName, String userName, String password, String type, String status) {
+		return adminFuncController.createUser(firstName, lastName, userName, password, type, status);
 		
 	}
 	
@@ -131,8 +131,8 @@ public class AdminUI {
 	 * Edit an existing user information 
 	 * @return true if successfully edit profile
 	 */
-	public boolean editUserProfile(String firstName, String lastName, String username, String password, String type, String status) {
-		return adminFuncController.editUserProfile(firstName, lastName, username, password, type, status);
+	public boolean editUserProfile(String firstName, String lastName, String userName, String password, String type, String status) {
+		return adminFuncController.editUserProfile(firstName, lastName, userName, password, type, status);
 	}
 	
 	/**
@@ -144,4 +144,13 @@ public class AdminUI {
 		Account account = adminFuncController.getProfile(username);
 		return account;
 	}
+	
+	/**
+	 * View all universities that exist in database
+	 * @return ArrayList<University> list of all universities
+	 */
+	public ArrayList<University> viewUniversityList(){
+		return adminFuncController.getUniversityList();
+	}
+	
 }

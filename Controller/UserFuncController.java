@@ -69,7 +69,7 @@ public class UserFuncController {
   * @return ArrayList<String> list of saved school of user
   */
  public ArrayList<String> viewSavedSchool(String username){
-  User user = accountController.getAccountInfo(username);
+  User user = accountController.getUserInfo(username);
   return user.getSavedSchool();
  }
  
@@ -141,7 +141,7 @@ public class UserFuncController {
   * @return User user object
   */
  public User getProfile(String username){
-	 return accountController.getAccountInfo(username);
+	 return accountController.getUserInfo(username);
  }
  
 }

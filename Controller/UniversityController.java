@@ -79,4 +79,14 @@ public class UniversityController {
 		boolean isFailed = universityDBController.updateUniversity(newUniversity);
 		return isFailed;
 	}
+	
+	/**
+	 * Get all universities that exist in database
+	 * @return ArrayList<University> list of all universities
+	 */
+	public ArrayList<University> getUniversityList(){
+		ArrayList<University> universityList = new ArrayList<University>();
+		universityList = universityDBController.getUniversityList();
+		return universityList;
+	}
 }

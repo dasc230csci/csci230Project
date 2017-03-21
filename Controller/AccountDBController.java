@@ -6,7 +6,6 @@ import Entity.Account;
 import Entity.User;
 import dblibrary.project.csci230.UniversityDBLibrary;
 
-//add getAllUsers List<Account>
 /**
  * This class is for managing DB which it enables to update, add, get information of
  * User or University
@@ -64,7 +63,7 @@ public class AccountDBController {
   * @param name username of the user
   * @return corresponding Account object
   */
-public User getAccount(String username){
+public User getUser(String username){
  String[][] account = dblib.user_getUsers();
  String[][] savedSchool = dblib.user_getUsernamesWithSavedSchools();
  User user = null;
@@ -74,12 +73,34 @@ public User getAccount(String username){
    user = new User(account[i][0], account[i][1], account[i][2], account[i][3], account[i][5],false);
   }
  }
+ if(savedSchool == null){
+	 return user;
+ }
  for(int i =0 ; i< savedSchool.length; i++){
   if(savedSchool[i][0].equals(user.getUsername())){
    user.addSavedSchool(savedSchool[i][1]);
   }
  }
  return user;
+}
+
+/**
+ * Obtain Account object from the database
+ * Searching by username
+ * 
+ * @param name username of the user
+ * @return corresponding Account object
+ */
+public Account getAccount(String username){
+String[][] account = dblib.user_getUsers();
+Account user = null;
+
+for(int i =0; i < account.length ;i++){
+ if(account[i][2].equals(username)){
+  user = new User(account[i][0], account[i][1], account[i][2], account[i][3], account[i][5],false);
+ }
+}
+return user;
 }
  /**
    * Add new Account information and store in DB
@@ -146,13 +167,11 @@ public User getAccount(String username){
 	 }
 	  ArrayList<String> newSchoolList = user.getSavedSchool();
 	  for(int i =0; i < oldSchoolList.size(); i++){
-		  isRemoved = dblib.user_removeSchool(user.getUsername(), oldSchoolList.get(i));
+		  dblib.user_removeSchool(user.getUsername(), oldSchoolList.get(i));
 		  }
 	  for(int i =0; i < newSchoolList.size(); i++){
-		  isSaved = dblib.user_saveSchool(user.getUsername(), newSchoolList.get(i));
+		  dblib.user_saveSchool(user.getUsername(), newSchoolList.get(i));
 		  }
-	  if(isRemoved == 1 && isSaved == 1)
-		  return true;
-	 return false;
+	  return true;
  }
 }

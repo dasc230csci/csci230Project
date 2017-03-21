@@ -112,7 +112,10 @@ public class AccountController{
    */
   public String verifyAccount(String username, String password){
     Account account = adbController.getAccount(username);
-    if(account.getPassword().equals(password)){
+    if(account == null){
+    	throw new NullPointerException("username password wrong combination");
+    }
+    else if(account.getPassword().equals(password)){
       return account.getType();
     }
     return "failed";
@@ -123,8 +126,17 @@ public class AccountController{
    * @param username username of the Account to get
    * @return Account object returned from database
    */
-  public User getAccountInfo(String username){
-    User user = adbController.getAccount(username);
+  public Account getAccountInfo(String username){
+    Account account = adbController.getAccount(username);
+    return account;
+  }
+  /**
+   * Method that return the specific Account object from database
+   * @param username username of the Account to get
+   * @return Account object returned from database
+   */
+  public User getUserInfo(String username){
+	  User user = adbController.getUser(username);
     return user;
   }
   
@@ -142,7 +154,7 @@ public class AccountController{
    * @return true if successfully saved
    */
   public boolean saveSchool(String username, String schoolName){
-	User user = adbController.getAccount(username);
+	User user= adbController.getUser(username);
     user.addSavedSchool(schoolName);
     if(adbController.updateSchoolList(user)){
       return true;
@@ -156,7 +168,7 @@ public class AccountController{
    * @return true if successfully removed
    */
   public boolean removeSavedSchool(String username, String schoolName){
-	User user = adbController.getAccount(username);
+	User user = adbController.getUser(username);
     user.removeSavedSchool(schoolName);
     if(adbController.updateSchoolList(user)){
       return true;
