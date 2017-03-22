@@ -81,21 +81,32 @@ public class UniversityDBController {
 	  * @return true if the information can be updated
 	  */
 	public boolean updateUniversity(University university){
+		String[][] arr = dblib.university_getNamesWithEmphases();
+		ArrayList<String> previousEmphases = new ArrayList<String>();
 		int updateEmpFailed = 0;
 		int failed = dblib.university_editUniversity(university.getSchoolName(), university.getState(), university.getLocation(), university.getControl(), university.getNumOfEnrolled(),
 				university.getFemaleRatio(), university.getSatVerbal(), university.getSatMath(), university.getExpenses(), 
 				university.getPerFinanAid(), university.getTotNumOfApplicant(), university.getPerAdmitted(), university.getPerEnrolled(),
-				university.getAcademicsScale(), university.getSocialScale(), university.getQualOfLifeScale());
-		ArrayList<String> previousEmphases = getUniversity(university.getSchoolName()).getEmphases();
-		for(int i = 0; i < previousEmphases.size(); i++){
-			dblib.university_removeUniversityEmphasis(university.getSchoolName(), previousEmphases.get(i));
+				university.getAcademicsScale(), university.getSocialScale(), university.getQualOfLifeScale());		
+		if(failed != 1){
+			return false;
 		}
-		ArrayList<String> emphases = university.getEmphases();
-		for(int i = 0; i < emphases.size(); i++){
-			updateEmpFailed = dblib.university_addUniversityEmphasis(university.getSchoolName(), emphases.get(i));
+		for(int i =0 ; i < arr.length; i++){
+			if(arr[i][0].equals(university.getSchoolName())){
+				previousEmphases.add(arr[i][1]);
+			}
+		}
+		if(previousEmphases != null){
+			for(int i = 0; i < previousEmphases.size(); i++){
+				dblib.university_removeUniversityEmphasis(university.getSchoolName(), previousEmphases.get(i));
+			}
+		}
+		ArrayList<String> newEmphases = university.getEmphases();
+		for(int i = 0; i < newEmphases.size(); i++){
+			updateEmpFailed = dblib.university_addUniversityEmphasis(university.getSchoolName(), newEmphases.get(i));
 		}
 		
-		if(failed != -1 && updateEmpFailed != -1){
+		if(updateEmpFailed != -1){
 			return true;
 		}
 		return false;
