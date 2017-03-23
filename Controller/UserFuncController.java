@@ -38,6 +38,7 @@ public class UserFuncController {
  public UserFuncController() {
    accountController = new AccountController();
    universityController= new UniversityController();
+   searchController = new SearchController();
  }
  
  /**
