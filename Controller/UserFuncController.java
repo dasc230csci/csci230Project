@@ -103,35 +103,36 @@ public class UserFuncController {
  * @return ArrayList<University> completed search list of school
  */
  public ArrayList<University> search(ArrayList<String> criteria){
-	 for(int i =0; i< criteria.size(); i++){
+	 ArrayList<String> schoolInfo = criteria;
+	 for(int i =0; i< schoolInfo.size(); i++){
 		 if(i == 4 || i == 6 || i == 8 || i == 10 || i == 12 || i == 14 || i == 16 
-				 || i == 18 || i ==20 || i == 22 || i ==24){
-			 if(criteria.get(i).equals("")){
-				 criteria.set(i, "0");
+				 || i == 18 || i ==20 || i == 22 || i == 24 || i ==26){
+			 if(schoolInfo.get(i).equals("")){
+				 schoolInfo.set(i, "0");
 			 }
 		 }////////////Set Minimum value to 0 if criteria is empty
 		 else if(i == 5 || i == 13 || i == 17){
-			 if(criteria.get(i).equals("")){
-				 criteria.set(i, "1000000");
+			 if(schoolInfo.get(i).equals("")){
+				 schoolInfo.set(i, "1000000");
 			 }
 		 }///////////Set max value to 1000000 if criteria is empty
 		 else if(i == 7 || i == 15 || i == 19 || i == 21){
-			 if(criteria.get(i).equals("")){
-				 criteria.set(i, "100");
+			 if(schoolInfo.get(i).equals("")){
+				 schoolInfo.set(i, "100");
 			 }
 		 }///////////Set Minimum value to 0 if criteria is empty(percentage)
 		 else if(i == 9 || i == 11){
-			 if(criteria.get(i).equals("")){
-				 criteria.set(i, "800");
+			 if(schoolInfo.get(i).equals("")){
+				 schoolInfo.set(i, "800");
 			 }
 		 }///////////Set Max value to 800 if criteria is empty(SAT score)
 		 else if(i == 23 || i == 25 || i == 27){
-			 if(criteria.get(i).equals("")){
-				 criteria.set(i, "5");
+			 if(schoolInfo.get(i).equals("")){
+				 schoolInfo.set(i, "5");
 			 }
 		 }///////////Set Max value to 5 if criteria is empty(scale)
 	 }
-  ArrayList<University> searched = searchController.search(criteria);
+  ArrayList<University> searched = searchController.search(schoolInfo);
   return searched;
  }
  
@@ -143,6 +144,16 @@ public class UserFuncController {
   */
  public User getProfile(String username){
 	 return accountController.getUserInfo(username);
+ }
+ /**
+  * Search recommendation school similar to the school that
+  * user viewed in detail
+  * @param schoolName name of the school user viewed
+  * @return ArrayList<University> recommendation list of searched university
+  */
+ public ArrayList<University> searchRecommendation(String schoolName){
+	 University university = universityController.getUniversityInDetailed(schoolName);
+	 return searchController.searchRecomendations(university);
  }
  
 }

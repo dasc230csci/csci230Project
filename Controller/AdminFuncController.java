@@ -15,7 +15,7 @@ import Entity.*;
 public class AdminFuncController
 {
   /**
-   * AccountController to add, edit or get account or user 
+   * AccountController to add, edit or get account or user	
    */
   private AccountController accountController;
   
@@ -31,8 +31,8 @@ public class AdminFuncController
    */
   public AdminFuncController()
   {
-   accountController = new AccountController();
-   universityController = new UniversityController();
+	  accountController = new AccountController();
+	  universityController = new UniversityController();
   }
   
   /**
@@ -53,8 +53,8 @@ public class AdminFuncController
    */
   public boolean deactivateUser(String username)
   {
-   boolean isFailed = accountController.deactivateAccount(username);
-   return isFailed;
+	  boolean isFailed = accountController.deactivateAccount(username);
+	  return isFailed;
   }
   
   /**
@@ -65,7 +65,7 @@ public class AdminFuncController
    */
   public boolean addUniversity(ArrayList<String> schoolInfo)
   {
- boolean isFailed = universityController.createUniversity(schoolInfo);
+	boolean isFailed = universityController.createUniversity(schoolInfo);
     return isFailed;
   }
   
@@ -77,7 +77,7 @@ public class AdminFuncController
    */
   public boolean editUniversityInDetailed(ArrayList<String> schoolInfo)
   {
- boolean isFailed = universityController.editUniversityInDetailed(schoolInfo);
+	boolean isFailed = universityController.editUniversityInDetailed(schoolInfo);
     return isFailed;
   }
   
@@ -121,15 +121,15 @@ public class AdminFuncController
    */
   public Account getProfile(String username)
   {
-    Account account = accountController.getAccountInfo(username);  
+	Account account = accountController.getAccountInfo(username);  
     return account;
   }
   
-   /**
-  * Get all universities that exist in database
-  * @return ArrayList<University> list of all universities
-  */
+  	/**
+	 * Get all universities that exist in database
+	 * @return ArrayList<University> list of all universities
+	 */
   public ArrayList<University> getUniversityList(){
-   return universityController.getUniversityList();
+	  return universityController.getUniversityList();
   }
 }

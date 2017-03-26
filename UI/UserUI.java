@@ -83,7 +83,7 @@ public class UserUI{
    * @param schoolName name of the school to be saved
    * @returns true if the school is successfully saved 
    */
-  public boolean saveSchool(String schoolName){
+  public boolean saveUniversity(String schoolName){
     if(userFuncController.saveSchool(username, schoolName)){
       return true;
     }
@@ -91,7 +91,7 @@ public class UserUI{
   }
   
   /**
-   * the removeSavedSchool() method, removes a specified school
+   * the removeSavedUniversity() method, removes a specified school
    * (assuming it is present in the users savedSchools array) and 
    * return a boolean true if it was successfully removed.
    * 
@@ -106,7 +106,7 @@ public class UserUI{
   }
   
   /**
-   * the viewUniversityInDetail() method, displays all the previously
+   * the viewSchoolInDetail() method, displays all the previously
    * hidden information about the schools academics and other
    * statistics users may find useful
    * 
@@ -116,7 +116,45 @@ public class UserUI{
   public University viewUniversityInDetail(String schoolName){
     return userFuncController.getUniversityInDetail(schoolName);
   }
-  /////////////////////////
+  
+  /**
+   * the search() method, search schools that match with criteria
+   * that user provides
+   * @param schoolName name of school
+   * @param state
+   * @param location location that school in
+   * @param control whether private, public etc.
+   * @param minNumOfEnrolled minimum of students enrolled in school
+   * @param maxNumOfEnrolled maximum of students enrolled in school
+   * @param minFemaleRatio minimum ratio of female
+   * @param maxFemaleRatio maximum ratio of female
+   * @param minSatVerbal minimum score SAT Verbal
+   * @param maxSatVerbal maximum score SAT Verbal
+   * @param minSatMath minimum score SAT Math
+   * @param maxSatMath maximum score SAT Math
+   * @param minExpenses minimum expenses of school
+   * @param maxExpenses maximum expenses of school
+   * @param minPerFinanAid minimum percentage of financial aid received
+   * @param maxPerFinanAid maximum percentage of financial aid received
+   * @param minTotNumOfApplicant minimum total number of applicant
+   * @param maxTotNumOfApplicant maximum total number of applicant
+   * @param minPerAdmitted minimum percentage of admitted rate
+   * @param maxPerAdmitted maximum percentage of admitted rate
+   * @param minPerEnrolled minimum percentage of enrolled rate
+   * @param maxPerEnrolled maximum percentage of enrolled rate
+   * @param minAcademicScale minimum academic scale
+   * @param maxAcademicScale maximum academic scale
+   * @param minSocialScale minimum social scale
+   * @param maxSocialScale maximum social scale
+   * @param minQualOfLifeScale minimum quality of life scale
+   * @param maxQualOfLifeScale maximum quality of life scale
+   * @param emphases1 the first emphases
+   * @param emphases2 the second emphases
+   * @param emphases3 the third emphases
+   * @param emphases4 the forth emphases
+   * @param emphases5 the fifth emphases
+   * @return ArrayList<University> searched university based on the criteria
+   */
   public ArrayList<University> search(String schoolName, String state, String location, String control,
 		  String minNumOfEnrolled, String maxNumOfEnrolled, String minFemaleRatio, String maxFemaleRatio,
 		  String minSatVerbal, String maxSatVerbal, String minSatMath, String maxSatMath, 
@@ -161,5 +199,15 @@ public class UserUI{
 	  criteria.add(emphases5);
 	  ArrayList<University> searched = userFuncController.search(criteria);
 	  return searched;
+  }
+  
+  /**
+   * Search recommendation school similar to the school that
+   * user viewed in detail
+   * @param schoolName name of the school user viewed
+   * @return ArrayList<University> recommendation list of searched university
+   */
+  public ArrayList<University> searchRecommendation(String schoolName){
+	  return userFuncController.searchRecommendation(schoolName);
   }
  }

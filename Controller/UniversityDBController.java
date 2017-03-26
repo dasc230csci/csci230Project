@@ -90,7 +90,7 @@ public class UniversityDBController {
 				university.getAcademicsScale(), university.getSocialScale(), university.getQualOfLifeScale());		
 		if(failed != 1){
 			return false;
-		}////////////////////////after Caitlin Testing
+		}
 		for(int i =0 ; i < arr.length; i++){
 			if(arr[i][0].equals(university.getSchoolName())){
 				previousEmphases.add(arr[i][1]);

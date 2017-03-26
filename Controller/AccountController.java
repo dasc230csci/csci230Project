@@ -23,7 +23,7 @@ public class AccountController{
    * Default Constructor
    */
   public AccountController(){
-   this.adbController = new AccountDBController();
+	  this.adbController = new AccountDBController();
   }
  
   /**
@@ -38,8 +38,8 @@ public class AccountController{
    * @param status status of the user whether the account is activated or not
    * @return true if successfully create new Account
    */
-  public boolean createAccount(String firstName, String lastName, String userName, String password, String type, String status){
-      Account account = new Account(firstName, lastName, userName, password, type, status, false);
+  public boolean createAccount(String firstName, String lastName, String username, String password, String type, String status){
+      Account account = new Account(firstName, lastName, username, password, type, status, false);
       if(adbController.addAccount(account)){
         return true; 
       }
@@ -57,11 +57,10 @@ public class AccountController{
    * @param status status of the user whether the account is activated or not
    * @return true if successfully edit profile
    */
-  public boolean adminEditProfile(String firstName, String lastName,String username, String password, String type, String status){
+  public boolean adminEditProfile(String firstName, String lastName, String username, String password, String type, String status){
     Account newAccount = adbController.getAccount(username);
     newAccount.setFirstName(firstName);
     newAccount.setLastName(lastName);
-    newAccount.setUsername(username);
     newAccount.setPassword(password);
     newAccount.setType(type);
     newAccount.setStatus(status);
@@ -99,7 +98,7 @@ public class AccountController{
    */
   public boolean deactivateAccount(String username){
     if(adbController.deactivateAccount(username))
-     return true;
+    	return true;
     return false;
   }
   
@@ -113,7 +112,7 @@ public class AccountController{
   public String verifyAccount(String username, String password){
     Account account = adbController.getAccount(username);
     if(account == null){
-     throw new NullPointerException("username password wrong combination");
+    	throw new NullPointerException("username password wrong combination");
     }
     else if(account.getPassword().equals(password)){
       return account.getType();
@@ -136,7 +135,7 @@ public class AccountController{
    * @return Account object returned from database
    */
   public User getUserInfo(String username){
-   User user = adbController.getUser(username);
+	  User user = adbController.getUser(username);
     return user;
   }
   
@@ -154,12 +153,7 @@ public class AccountController{
    * @return true if successfully saved
    */
   public boolean saveSchool(String username, String schoolName){
- User user= adbController.getUser(username);
-    user.addSavedSchool(schoolName);
-    if(adbController.updateSchoolList(user)){
-      return true;
-    }
-    return false;
+	  return adbController.saveSchool(username, schoolName);
   }
   
   /**
@@ -168,11 +162,6 @@ public class AccountController{
    * @return true if successfully removed
    */
   public boolean removeSavedSchool(String username, String schoolName){
- User user = adbController.getUser(username);
-    user.removeSavedSchool(schoolName);
-    if(adbController.updateSchoolList(user)){
-      return true;
-    }
-    return false;
+	return adbController.removeSavedSchool(username, schoolName);
   }
 }

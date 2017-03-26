@@ -201,13 +201,15 @@ public class Account {
    * @return true if account is successfully loggedin
    */
   public boolean login(){
-	  return false;
+	  this.loggedIn = true;
+	  return true;
   }
   /**
    * the logoff() method, which set loggedIn to false
    * @return true if account is successfully logged off
    */
   public boolean logoff(){
-	  return false;
+	  this.loggedIn = false;
+	  return true;
   }
 }
