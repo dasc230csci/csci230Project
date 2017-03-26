@@ -29,11 +29,11 @@ public class UniversityDBController {
 		if(getUniversity(name) == null){
 			return false;
 		}
-		int failed = dblib.university_deleteUniversity(name);
 		ArrayList<String> oldEmp = getUniversity(name).getEmphases();
 		for(int i = 0; i < oldEmp.size(); i++){
 			dblib.university_removeUniversityEmphasis(name, oldEmp.get(i));
-		}		
+		}
+		int failed = dblib.university_deleteUniversity(name);
 		if(failed != -1){
 			return true;
 		}

@@ -15,10 +15,9 @@ public class UIDriver {
 	AdminUI adminUi = new AdminUI("adminu");
 	
 	public UIDriver(){
-		UniversityDBController univ = new UniversityDBController();
+		
 		AccountDBController ac = new AccountDBController();/////for reactivating(just for showing)
 		
-		univ.deleteUniversity("TESTU");
 		ac.reactivateAccount("useru");
 		ac.deleteUser("testu");
 	}
@@ -158,13 +157,15 @@ public class UIDriver {
 		ArrayList<String> emphasesArray = new ArrayList<String>();
 		  emphasesArray.add("CHANGED1");
 		  emphasesArray.add("CHANGED2");
-		  boolean universityIsEdited = adminUi.addUniversity("TESTU", "TESTEDITED", "TEST LOCATION", 
+		  boolean universityIsEdited = adminUi.editUniversity("TESTU", "TESTEDITED", "TEST LOCATION", 
 				  "TEST CONTROL", "5000", 
 		         "52", "500", "500", "500", "99", "800",
 		         "72", "65", "4", "2", "3", emphasesArray);
 		 System.out.println("Successful to Edit : " + universityIsEdited);
-		  System.out.println("STATE : " + userUi.viewUniversityInDetail("TESTU").getState());
-		  System.out.println("EMPHASES : " + userUi.viewUniversityInDetail("TESTU").getEmphases().get(0));
+		 System.out.println("STATE : " + userUi.viewUniversityInDetail("TESTU").getState());
+		 System.out.println("EMPHASES : " + userUi.viewUniversityInDetail("TESTU").getEmphases().get(0));
+		 UniversityDBController univ = new UniversityDBController();////// for Driver
+		 univ.deleteUniversity("TESTU");/////// just for Driver
 	}
 	
 	/**
