@@ -64,8 +64,9 @@ public class UIDriver {
 	 */
 	public void saveSchool(){
 		System.out.println("====================saveSchool()====================");
-		System.out.println("Saved : " + userUi.saveUniversity("ST JOHNS UNIVERSITY"));		
-		System.out.println(userUi.viewSavedSchool());
+		System.out.println("Old Saved Schools Array : " + userUi.viewSavedSchool());
+		System.out.println("Saved SJU: " + userUi.saveUniversity("ST JOHNS UNIVERSITY"));		
+		System.out.println("New Saved Schools Array : " + userUi.viewSavedSchool());
 	}
 	
 	/**
@@ -73,8 +74,9 @@ public class UIDriver {
 	 */
 	public void removeSchool(){
 		System.out.println("====================removeSchool()====================");
-		System.out.println("Removed : " + userUi.removeSavedUniversity("ST JOHNS UNIVERSITY"));
-		System.out.println(userUi.viewSavedSchool());
+		System.out.println("Saved school Array before Removal : " + userUi.viewSavedSchool());
+		System.out.println("Removed SJU: " + userUi.removeSavedUniversity("ST JOHNS UNIVERSITY"));
+		System.out.println("Saved school Array  after removal : " + userUi.viewSavedSchool());
 	}
 	
 	/**
@@ -85,6 +87,8 @@ public class UIDriver {
 		University u = userUi.viewUniversityInDetail("BARD");
 		System.out.println("Name : " + u.getSchoolName() + " State : " + u.getState());
 		System.out.println("====================searchRecommendation()====================");
+		System.out.println("Searching for Universities similar to Bard University...");
+		System.out.println("                                                        ");
 		ArrayList<University> list = userUi.searchRecommendation("BARD");
 		for(University university : list){
 			System.out.println(university.getSchoolName());
@@ -99,6 +103,8 @@ public class UIDriver {
 		ArrayList<University> searched = userUi.search("ST", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", 
 				"", "", "", "", "", "", "", 
 				"", "", "FINE_ARTS", "BIOLOGY", "", "", "");
+		System.out.println("Searching for schools with emphasis in Fine Arts and Biology...");
+		System.out.println("                                                               ");
 		for(int i =0 ; i < searched.size(); i++){
 			System.out.println(searched.get(i).getSchoolName());
 		}
@@ -208,6 +214,7 @@ public class UIDriver {
 		System.out.println("===============================================");
 		System.out.println("====================User UI====================");
 		System.out.println("===============================================");
+		System.out.println("                                               ");
 		uiDriver.viewProfile();
 		uiDriver.viewSavedSchool();
 		uiDriver.editProfile();
@@ -215,9 +222,10 @@ public class UIDriver {
 		uiDriver.removeSchool();
 		uiDriver.viewSavedSchoolDetail();
 		uiDriver.search();
-		System.out.println("================================================");
-		System.out.println("====================Admin UI====================");
-		System.out.println("================================================");
+		System.out.println("==================================================");
+		System.out.println("======================Admin UI====================");
+		System.out.println("==================================================");
+		System.out.println("                                                  ");
 		uiDriver.viewAllAccount();
 		uiDriver.deactivateUser();
 		uiDriver.addUniversity();
