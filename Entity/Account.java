@@ -6,7 +6,7 @@ package Entity;
  * Method used in subclass, Admin and User
  * 
  * @author  Daniel M. Song, Anh B. Tran, Caitlin E. Harvey, Samuel J. Halloran
- * @version Feburary 27, 2017
+ * @version March 27, 2017
  */
 
 public class Account {
@@ -104,7 +104,7 @@ public class Account {
   /**
    * the getPassword() method, returns the password
    * associated with the account object.
-   * @return String passWord
+   * @return String password
    */
   
   public String getPassword(){
@@ -115,6 +115,7 @@ public class Account {
   /**
    * the getType() method, returns the sub class
    * the Account object takes on
+   * @return type of the account
    */
   
   public String getType(){
@@ -125,12 +126,21 @@ public class Account {
   /**
    * the getStatus() method, returns the current condition
    * of the account, being active or deactivated.
-   * return String Status.
+   * @return String Status.
    */
   
   public String getStatus(){
   
     return this.status;
+  }
+  
+  /**
+   * the getLoggedIn method, return true if the user is
+   * logged in, return false if does not
+   * @return true if the user is logged in
+   */
+  public boolean getLoggedIn(){
+	  return this.loggedIn;
   }
   
   /**
@@ -196,20 +206,11 @@ public class Account {
   }
   
   /**
-   * the login() method, which set loggedIn to true
+   * the setLoggedIn() method, which set loggedIn to true
    * if account is successfully loggedin
-   * @return true if account is successfully loggedin
+   * @param loggedIn true if logged in else false
    */
-  public boolean login(){
-	  this.loggedIn = true;
-	  return true;
-  }
-  /**
-   * the logoff() method, which set loggedIn to false
-   * @return true if account is successfully logged off
-   */
-  public boolean logoff(){
-	  this.loggedIn = false;
-	  return true;
+  public void setLoggedIn(boolean loggedIn){
+	  this.loggedIn = loggedIn;
   }
 }

@@ -10,7 +10,7 @@ import Controller.LoginController;
  * Class to represent the Login UI.
  * 
  * @author  Daniel M. Song, Anh B. Tran, Caitlin E. Harvey, Samuel J. Halloran
- * @version Feburary 27, 2017
+ * @version March 27, 2017
  */
 public class LoginUI {
  
@@ -19,6 +19,9 @@ public class LoginUI {
   */
  private LoginController loginController;
  
+ /**
+  * Default Constructor that initialize loginController
+  */
  public LoginUI(){
 	 this.loginController = new LoginController();
  }
@@ -28,7 +31,7 @@ public class LoginUI {
   * 
   * @param name username of the user
   * @param password of the user
-  * @return true if successfully verified
+  * @return String type of the user. "isFailed" return if invalid username or password
   */
  public String verifyUser(String username, String password){
 	 //method needs to take user login info parameters to pass along to LoginController method

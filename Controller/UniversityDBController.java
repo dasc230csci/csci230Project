@@ -9,7 +9,7 @@ import dblibrary.project.csci230.UniversityDBLibrary;
  * User or University
  * 
  * @author  Daniel M. Song, Anh B. Tran, Caitlin E. Harvey, Samuel J. Halloran
- * @version Mar 4, 2017
+ * @version March 27, 2017
  */
 public class UniversityDBController {
 	

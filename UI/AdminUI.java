@@ -10,7 +10,7 @@ import Entity.*;
  * Class to represent the Admin UI.
  * 
  * @author  Daniel M. Song, Anh B. Tran, Caitlin E. Harvey, Samuel J. Halloran
- * @version Feburary 27, 2017
+ * @version March 27, 2017
  */
 public class AdminUI {
 	
@@ -26,7 +26,8 @@ public class AdminUI {
 	private String username;
 	
 	/**
-	 * Default constructor.
+	 * Default constructor. Initialize username and adminFuncController
+	 * @param username of the user
 	 */
 	public AdminUI(String username) {
 		this.username = username;

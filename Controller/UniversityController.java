@@ -11,7 +11,7 @@ import Entity.University;
  * A Class representing a University Controller and all its functions.
  * 
  * @author  Daniel M. Song, Anh B. Tran, Caitlin E. Harvey, Samuel J. Halloran
- * @version Feburary 27, 2017
+ * @version March 27, 2017
  */
 
 public class UniversityController {
@@ -22,7 +22,7 @@ public class UniversityController {
 	private UniversityDBController universityDBController;
 	
 	/**
-	 * Default Constructor
+	 * Default Constructor. Initialize UniversityDBController
 	 */
 	public UniversityController(){
 		universityDBController = new UniversityDBController();
@@ -32,7 +32,7 @@ public class UniversityController {
 	 * A method that create a new university based on the array of input
 	 * 
 	 * @param schoolInfo the information to create a new university
-	 * @return an university
+	 * @return boolean true if successfully create new university
 	 */
 	public boolean createUniversity(ArrayList<String> schoolInfo){
 		ArrayList<String> emphases = new ArrayList<String>();
@@ -62,8 +62,7 @@ public class UniversityController {
 	/**
 	 * A method that set the details of the university
 	 * 
-	 * @param editInfo
-	 *            the array that contains the information that need to be change
+	 * @param editInfo the array that contains the information that need to be change
 	 * @return boolean if the changes are made or not
 	 */
 	public boolean editUniversityInDetailed(ArrayList<String> editInfo){

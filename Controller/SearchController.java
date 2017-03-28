@@ -15,25 +15,20 @@ import Entity.University;
  * made to search through the university database with 
  * the methods stored in the class, then makes the call
  * to the DB controller to conducted the search.
+ * 
+ * @author  Daniel M. Song, Anh B. Tran, Caitlin E. Harvey, Samuel J. Halloran
+ * @version March 27, 2017
  */
-
 
 public class SearchController{
 	
 	/**
 	 * DBController to search school
 	 */
-	private UniversityDBController universityDBController;
-	
-  
-  /**
-   * the default constructor method for the search controller 
-   * class, creates an instance of the controller in order to 
-   * execute the search methods in the database.
-   */
+	private UniversityDBController universityDBController;	
   
 	/**
-	 * Default Constructor
+	 * Default Constructor. Initialize UniversityDBController.
 	 */
   public SearchController(){
 	  universityDBController = new UniversityDBController();
@@ -45,7 +40,7 @@ public class SearchController{
    * school parameter, returning a collection of University objects
    * with similar school statistics as the parameter
    * @param ArrayList<String> information of the school to search
-   * @return a collection of University objects
+   * @return ArrayList<University> a collection of University objects
    */
   public ArrayList<University> search(ArrayList<String> schoolInfo){
 	  ArrayList<String> emphases = new ArrayList<String>();
@@ -109,8 +104,8 @@ public class SearchController{
    * the searchRecomendations() method, returns the top 5 schools
    * it finds to be the most similar to the parameter provided 
    * University
-   * @param ArrayList<String> information of the school to search recommendation
-   * @return a collection of 5 university objects
+   * @param University university object to search recommendation
+   * @return ArrayList<University> a collection of 5 university objects
    */
 	public ArrayList<University> searchRecomendations(University university){
 		UniversityDBController db = new UniversityDBController();
@@ -189,7 +184,12 @@ public class SearchController{
 		return recommendation;
 	}
 	
-	public static List sortByValue(final Map map) {
+	/**
+	 * sortByValue() sort map by value. Sort from the lowest to the highest value number of the key
+	 * @param map to sort
+	 * @return List sorted key from the lowest to the highest value
+	 */
+	private static List sortByValue(final Map map) {
         List<String> list = new ArrayList();
         list.addAll(map.keySet());
          

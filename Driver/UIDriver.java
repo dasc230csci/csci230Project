@@ -7,19 +7,50 @@ import Entity.Account;
 import Entity.University;
 import Entity.User;
 import UI.AdminUI;
+import UI.LoginUI;
 import UI.UserUI;
 
+
+/**
+ * This is UIDriver class which shows all functionalities of AdminUI and UserUI 
+ * 
+ * @author  Daniel M. Song, Anh B. Tran, Caitlin E. Harvey, Samuel J. Halloran
+ * @version March 27, 2017
+ */
 public class UIDriver {
 	
-	UserUI userUi = new UserUI("useru");
-	AdminUI adminUi = new AdminUI("adminu");
+	/**
+	 * UserUI object contains user functionalities
+	 */
+	private UserUI userUi = new UserUI("useru");
+	/**
+	 * AdminUI object contains user functionalities
+	 */
+	private AdminUI adminUi = new AdminUI("adminu");
 	
+	/**
+	 * LoginUI object to verify user
+	 */
+	private LoginUI loginUi = new LoginUI();
+	
+	/**
+	 * Default Constructor. initialize AccountDBController to delete existing user in database
+	 * so that driver is working
+	 */
 	public UIDriver(){
 		
-		AccountDBController ac = new AccountDBController();/////for reactivating(just for showing)
-		
+		AccountDBController ac = new AccountDBController();/////for reactivating and delete existing user(just for showing)
 		ac.reactivateAccount("useru");
 		ac.deleteUser("testu");
+	}
+	
+	/**
+	 * Method to check whether user can loggin
+	 */
+	public void loggin(){
+		System.out.println("====================loggin()====================");
+		System.out.println("Succeed if u : " + loginUi.verifyUser("useru", "password"));
+		System.out.println("Succeed if a : " + loginUi.verifyUser("adminu", "password"));
 	}
 	
 	/**
@@ -30,6 +61,7 @@ public class UIDriver {
 		System.out.println("First Name : " + userUi.viewProfile().getFirstName());
 		System.out.println("Last Name : " + userUi.viewProfile().getLastName());
 		System.out.println("Username : " + userUi.viewProfile().getUsername());
+		System.out.println("Password : " + userUi.viewProfile().getPassword());
 		System.out.println("Type : " + userUi.viewProfile().getType());
 		System.out.println("Status : " + userUi.viewProfile().getStatus());	
 	}
@@ -164,8 +196,8 @@ public class UIDriver {
 		 System.out.println("Successful to Edit : " + universityIsEdited);
 		 System.out.println("STATE : " + userUi.viewUniversityInDetail("TESTU").getState());
 		 System.out.println("EMPHASES : " + userUi.viewUniversityInDetail("TESTU").getEmphases().get(0));
-		 UniversityDBController univ = new UniversityDBController();////// for Driver
-		 univ.deleteUniversity("TESTU");/////// just for Driver
+		 UniversityDBController univ = new UniversityDBController();
+		 univ.deleteUniversity("TESTU");
 	}
 	
 	/**
@@ -212,6 +244,11 @@ public class UIDriver {
 
 	public static void main(String[] args){
 		UIDriver uiDriver = new UIDriver();
+		System.out.println("===============================================");
+		System.out.println("====================Login UI====================");
+		System.out.println("===============================================");
+		System.out.println("                                               ");
+		uiDriver.loggin();
 		System.out.println("===============================================");
 		System.out.println("====================User UI====================");
 		System.out.println("===============================================");

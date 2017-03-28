@@ -13,7 +13,7 @@ import Entity.University;
  * Controller class with functions for the User.
  * 
  * @author  Daniel M. Song, Anh B. Tran, Caitlin E. Harvey, Samuel J. Halloran
- * @version Feburary 27, 2017
+ * @version March 27, 2017
  */
 public class UserFuncController {
  
@@ -90,7 +90,7 @@ public class UserFuncController {
   * Gets the university is greater detail.
   * 
   * @param schoolName name of the school to view in detail
-  * @return University
+  * @return University university object which contains school information
   */
  public University getUniversityInDetail(String schoolName) {
   return universityController.getUniversityInDetailed(schoolName);

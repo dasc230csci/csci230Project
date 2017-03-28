@@ -10,7 +10,7 @@ import Entity.*;
  * A Class representing a Admin Function Controller and all its functions.
  * 
  * @author  Daniel M. Song, Anh B. Tran, Caitlin E. Harvey, Samuel J. Halloran
- * @version Feburary 27, 2017
+ * @version March 27, 2017
  */
 public class AdminFuncController
 {
@@ -25,9 +25,8 @@ public class AdminFuncController
   private UniversityController universityController;
   
   /**
-   * constuctor for the AdminFuncController with specific admin
+   * Default Constructor. Initialize AccountController and University Controller
    * 
-   * @param admin the admin
    */
   public AdminFuncController()
   {
@@ -117,7 +116,8 @@ public class AdminFuncController
   /**
    * A method that get the user information
    * 
-   * return account the account that has not been modified
+   * @param username name of the user
+   * @return account information of the user
    */
   public Account getProfile(String username)
   {

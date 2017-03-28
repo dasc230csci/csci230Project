@@ -9,7 +9,7 @@ import Entity.*;
  * edit, add, create, remove, and update the Account
  * 
  * @author  Daniel M. Song, Anh B. Tran, Caitlin E. Harvey, Samuel J. Halloran
- * @version Feburary 27, 2017
+ * @version March 27, 2017
  */
 public class AccountController{  
   
@@ -20,7 +20,7 @@ public class AccountController{
   private AccountDBController adbController;
   
   /**
-   * Default Constructor
+   * Default Constructor. Initialize AccountDBController
    */
   public AccountController(){
 	  this.adbController = new AccountDBController();
@@ -149,6 +149,7 @@ public class AccountController{
   
   /**
    * Method that enable users to save(add) school in user's school list
+   * @param username name of the user want to save school
    * @param schoolName name of the school want to save(add)
    * @return true if successfully saved
    */
@@ -158,6 +159,7 @@ public class AccountController{
   
   /**
    * Method that enable users to remove school in user's school list
+   * @param username name of the user want to remove school
    * @param schoolName name of the school want to remove
    * @return true if successfully removed
    */

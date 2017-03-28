@@ -239,7 +239,7 @@ public class University {
 	 * 
 	 * @return the femaleRatio
 	 */
-	public Double getFemaleRatio() {
+	public double getFemaleRatio() {
 		return femaleRatio;
 	}
 
@@ -258,7 +258,7 @@ public class University {
 	 * 
 	 * @return the satVerbal
 	 */
-	public Double getSatVerbal() {
+	public double getSatVerbal() {
 		return satVerbal;
 	}
 
@@ -277,7 +277,7 @@ public class University {
 	 * 
 	 * @return the satMath
 	 */
-	public Double getSatMath() {
+	public double getSatMath() {
 		return satMath;
 	}
 
@@ -296,7 +296,7 @@ public class University {
 	 * 
 	 * @return the expenses
 	 */
-	public Double getExpenses() {
+	public double getExpenses() {
 		return expenses;
 	}
 
@@ -315,7 +315,7 @@ public class University {
 	 * 
 	 * @return the perAdmitted
 	 */
-	public Double getPerAdmitted() {
+	public double getPerAdmitted() {
 		return perAdmitted;
 	}
 
@@ -334,7 +334,7 @@ public class University {
 	 * 
 	 * @return the perEnrolled
 	 */
-	public Double getPerEnrolled() {
+	public double getPerEnrolled() {
 		return perEnrolled;
 	}
 
@@ -377,6 +377,7 @@ public class University {
 	
 	/**
 	 * Method to set percentage of student who get financial aid
+	 * @param perFinanAid percentage of student receive financial aid
 	 */
 	public void setPerFinanAid(double perFinanAid){
 		this.perFinanAid = perFinanAid;

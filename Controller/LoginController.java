@@ -5,7 +5,7 @@ package Controller;
  * Method used in subclass, Admin and User
  * 
  * @author  Daniel M. Song, Anh B. Tran, Caitlin E. Harvey, Samuel J. Halloran
- * @version Feburary 27, 2017
+ * @version March 27, 2017
  */
 public class LoginController {
 	/**
@@ -15,7 +15,7 @@ public class LoginController {
 	 private AccountController accountController;
 	 
 	 /**
-	  * Default Constructor
+	  * Default Constructor. Initialize AccountController.
 	  */
 	 public LoginController(){
 		 this.accountController = new AccountController();
@@ -27,7 +27,7 @@ public class LoginController {
 	  * 
 	  * @param name username of the user
 	  * @param password of the user
-	  * @return true if valid user logging in
+	  * @return String type of the user. "isFailed" return if invalid username or password
 	  */
 	 public String verifyUser(String username, String password){
 		 String verify = this.accountController.verifyAccount(username, password);

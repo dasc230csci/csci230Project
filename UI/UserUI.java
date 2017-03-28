@@ -12,7 +12,7 @@ import Controller.*;
  * Class to represent the User UI.
  * 
  * @author  Daniel M. Song, Anh B. Tran, Caitlin E. Harvey, Samuel J. Halloran
- * @version Feburary 27, 2017
+ * @version March 27, 2017
  */
 
 
@@ -32,7 +32,6 @@ public class UserUI{
   * the constructor to create a UserUI for a specific user
   * @param user the user using the system
   */
- 
  public UserUI(String username){
    this.userFuncController= new UserFuncController();
    this.username = username;

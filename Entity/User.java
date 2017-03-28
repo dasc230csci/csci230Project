@@ -45,6 +45,7 @@ public class User extends Account{
 	/**
 	 * Method which will add name of the school to the school list
 	 * 
+	 * @param schoolName name of the school to add
 	 * @return true if successfully add school to the list
 	 */
 	public boolean addSavedSchool(String schoolName){
@@ -55,6 +56,7 @@ public class User extends Account{
 	/**
 	 * Method which will remove name of the school from the school list
 	 * 
+	 * @param schoolName name of the school to remove
 	 * @return true if successfully remove school from the list
 	 */
 	public boolean removeSavedSchool(String schoolName){

@@ -6,13 +6,12 @@ import Entity.Account;
 import Entity.User;
 import dblibrary.project.csci230.UniversityDBLibrary;
 
-//add getAllUsers List<Account>
 /**
  * This class is for managing DB which it enables to update, add, get information of
  * User or University
  * 
  * @author  Daniel M. Song, Anh B. Tran, Caitlin E. Harvey, Samuel J. Halloran
- * @version Mar 4, 2017
+ * @version March 4, 2017
  */
 public class AccountDBController {
  
@@ -168,6 +167,7 @@ return a;
  /**
   * save school to the list of school of the user
   * to the database
+  * @param username name of the user want to save school
   * @param user to add school to the list
   * @return true if successfully add school to the list
   */ 
@@ -181,6 +181,7 @@ return a;
  /**
   * remove school from the list of school of the user
   * from the database
+  * @param username name of the user want to remove school
   * @param user to remove school from the list
   * @return true if successfully remove school from the list
   */ 
