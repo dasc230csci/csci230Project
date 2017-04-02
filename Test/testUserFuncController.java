@@ -5,40 +5,59 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import Controller.AccountController;
+import Controller.LoginController;
+import Controller.UserFuncController;
+import Entity.Account;
+import Entity.University;
+import Entity.User;
+import UI.UserUI;
+
 public class testUserFuncController {
 
+	UserFuncController userFuncController;
+	AccountController accountController;
+	Account testUser = new User("userfirst", "userlast", "userun", "userpw", "Y", false);
+	UserUI userUI;
+	
 	@Before
 	public void setUp() throws Exception {
+		this.userFuncController = new UserFuncController();
+		//this.accountController.createAccount("userfirst", "userlast", "userun", "userpw","u", "Y");
+		this.userUI = new UserUI(this.testUser.getUsername());
+		
 	}
 
 	@Test
 	public void testUserFuncController() {
-		fail("Not yet implemented");
+		assertTrue(this.userFuncController instanceof UserFuncController);
 	}
 
 	@Test
 	public void testSaveSchool() {
-		fail("Not yet implemented");
+		assertTrue(this.userFuncController.saveSchool("userun", "BARD"));
 	}
 
 	@Test
 	public void testEditProfile() {
-		fail("Not yet implemented");
+		assertTrue(this.userFuncController.editProfile("userun", "userfirstEDIT", "userlast", "userpw"));
 	}
 
 	@Test
 	public void testViewSavedSchool() {
-		fail("Not yet implemented");
+		this.userFuncController.saveSchool("userun", "BARNARD");
+		assertTrue(this.userFuncController.viewSavedSchool("userun").contains("BARNARD"));
 	}
 
 	@Test
 	public void testRemoveSavedSchool() {
-		fail("Not yet implemented");
+		assertTrue(this.userFuncController.removeSavedSchool("userun", "BARD"));
 	}
 
 	@Test
 	public void testGetUniversityInDetail() {
-		fail("Not yet implemented");
+		University universityToGet = this.userFuncController.getUniversityInDetail("BARD");
+		assertTrue(universityToGet.getSchoolName().equals("BARD"));
 	}
 
 	@Test
@@ -48,7 +67,7 @@ public class testUserFuncController {
 
 	@Test
 	public void testGetProfile() {
-		fail("Not yet implemented");
+		assertTrue(this.userFuncController.getProfile("userun") instanceof User);
 	}
 
 	@Test
