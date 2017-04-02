@@ -103,36 +103,7 @@ public class UserFuncController {
  * @return ArrayList<University> completed search list of school
  */
  public ArrayList<University> search(ArrayList<String> criteria){
-	 ArrayList<String> schoolInfo = criteria;
-	 for(int i =0; i< schoolInfo.size(); i++){
-		 if(i == 4 || i == 6 || i == 8 || i == 10 || i == 12 || i == 14 || i == 16 
-				 || i == 18 || i ==20 || i == 22 || i == 24 || i ==26){
-			 if(schoolInfo.get(i).equals("")){
-				 schoolInfo.set(i, "0");
-			 }
-		 }////////////Set Minimum value to 0 if criteria is empty
-		 else if(i == 5 || i == 13 || i == 17){
-			 if(schoolInfo.get(i).equals("")){
-				 schoolInfo.set(i, "1000000");
-			 }
-		 }///////////Set max value to 1000000 if criteria is empty
-		 else if(i == 7 || i == 15 || i == 19 || i == 21){
-			 if(schoolInfo.get(i).equals("")){
-				 schoolInfo.set(i, "100");
-			 }
-		 }///////////Set Minimum value to 0 if criteria is empty(percentage)
-		 else if(i == 9 || i == 11){
-			 if(schoolInfo.get(i).equals("")){
-				 schoolInfo.set(i, "800");
-			 }
-		 }///////////Set Max value to 800 if criteria is empty(SAT score)
-		 else if(i == 23 || i == 25 || i == 27){
-			 if(schoolInfo.get(i).equals("")){
-				 schoolInfo.set(i, "5");
-			 }
-		 }///////////Set Max value to 5 if criteria is empty(scale)
-	 }
-  ArrayList<University> searched = searchController.search(schoolInfo);
+  ArrayList<University> searched = searchController.search(criteria);
   return searched;
  }
  

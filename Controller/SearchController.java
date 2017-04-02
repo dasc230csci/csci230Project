@@ -33,6 +33,13 @@ public class SearchController{
   public SearchController(){
 	  universityDBController = new UniversityDBController();
   }
+  ///////////////////
+  private HashMap<String, Double> list = new HashMap<String, Double>();
+  
+  public HashMap<String, Double> getList(){
+	  return list;
+  }
+  ///////////////////
   
   /**
    * the search() method, used whenever a call is made by ]
@@ -42,62 +49,157 @@ public class SearchController{
    * @param ArrayList<String> information of the school to search
    * @return ArrayList<University> a collection of University objects
    */
-  public ArrayList<University> search(ArrayList<String> schoolInfo){
-	  ArrayList<String> emphases = new ArrayList<String>();
+  public ArrayList<University> search(ArrayList<String> criteria){
+	  ArrayList<University> universityList = universityDBController.getUniversityList();
 		ArrayList<University> searched = new ArrayList<University>();
-		ArrayList<University> schoolList = new ArrayList<University>();
-		ArrayList<University> universityList = universityDBController.getUniversityList();
-
-		for (int i = 0; i < universityList.size(); i++) {
-			if (universityList.get(i).getSchoolName().contains(schoolInfo.get(0))
-					&& universityList.get(i).getState().contains(schoolInfo.get(1))
-					&& universityList.get(i).getLocation().contains(schoolInfo.get(2))
-					&& universityList.get(i).getControl().contains(schoolInfo.get(3))
-					&& universityList.get(i).getNumOfEnrolled() >= Double.parseDouble(schoolInfo.get(4))
-					&& universityList.get(i).getNumOfEnrolled() <= Double.parseDouble(schoolInfo.get(5))
-					&& universityList.get(i).getFemaleRatio() >= Double.parseDouble(schoolInfo.get(6))
-					&& universityList.get(i).getFemaleRatio() <= Double.parseDouble(schoolInfo.get(7))
-					&& universityList.get(i).getSatVerbal() >= Double.parseDouble(schoolInfo.get(8))
-					&& universityList.get(i).getSatVerbal() <= Double.parseDouble(schoolInfo.get(9))
-					&& universityList.get(i).getSatMath() >= Double.parseDouble(schoolInfo.get(10))
-					&& universityList.get(i).getSatMath() <= Double.parseDouble(schoolInfo.get(11))
-					&& universityList.get(i).getExpenses() >= Double.parseDouble(schoolInfo.get(12))
-					&& universityList.get(i).getExpenses() <= Double.parseDouble(schoolInfo.get(13))
-					&& universityList.get(i).getPerFinanAid() >= Double.parseDouble(schoolInfo.get(14))
-					&& universityList.get(i).getPerFinanAid() <= Double.parseDouble(schoolInfo.get(15))
-					&& universityList.get(i).getTotNumOfApplicant() >= Integer.parseInt(schoolInfo.get(16))
-					&& universityList.get(i).getTotNumOfApplicant() <= Integer.parseInt(schoolInfo.get(17))
-					&& universityList.get(i).getPerAdmitted() >= Double.parseDouble(schoolInfo.get(18))
-					&& universityList.get(i).getPerAdmitted() <= Double.parseDouble(schoolInfo.get(19))
-					&& universityList.get(i).getPerEnrolled() >= Double.parseDouble(schoolInfo.get(20))
-					&& universityList.get(i).getPerEnrolled() <= Double.parseDouble(schoolInfo.get(21))
-					&& universityList.get(i).getAcademicsScale() >= Integer.parseInt(schoolInfo.get(22))
-					&& universityList.get(i).getAcademicsScale() <= Integer.parseInt(schoolInfo.get(23))
-					&& universityList.get(i).getSocialScale() >= Integer.parseInt(schoolInfo.get(24))
-					&& universityList.get(i).getSocialScale() <= Integer.parseInt(schoolInfo.get(25))
-					&& universityList.get(i).getQualOfLifeScale() >= Integer.parseInt(schoolInfo.get(26))
-					&& universityList.get(i).getQualOfLifeScale() <= Integer.parseInt(schoolInfo.get(27))) {
-				schoolList.add(universityList.get(i));
+		for(University compareUniv : universityList){
+			if(!compareUniv.getSchoolName().contains(criteria.get(0))){
+				continue;
 			}
-		} //////////////////////// search school without emphases
-		
-		for (int i = 28; i < schoolInfo.size(); i++) {
-			emphases.add(schoolInfo.get(i));
-		} //////////////////////// create emphases from schoolInfo to search
-		
-		if (!emphases.isEmpty()){
-			for (int i = 0; i < schoolList.size(); i++) {
-				for(int j = 0 ; j < emphases.size(); j++){
-					if (schoolList.get(i).getEmphases().contains(emphases.get(j))){
-						searched.add(schoolList.get(i)); /////////////////////add school to final list that met with criteria
+			else if(!compareUniv.getState().contains(criteria.get(1))){
+				continue;
+			}
+			else if(!compareUniv.getLocation().contains(criteria.get(2))){
+				continue;
+			}
+			else if(!compareUniv.getControl().contains(criteria.get(3))){
+				continue;
+			}
+			else if(!criteria.get(4).equals("")){
+				if(compareUniv.getNumOfEnrolled() < Integer.parseInt(criteria.get(4))){
+					continue;
+				}
+			}
+			else if(!criteria.get(5).equals("")){
+				if(compareUniv.getNumOfEnrolled() > Integer.parseInt(criteria.get(5))){
+					continue;
+				}
+			}
+			else if(!criteria.get(6).equals("")){
+				if(compareUniv.getFemaleRatio() < Double.parseDouble(criteria.get(6))){
+					continue;
+				}
+			}
+			else if(!criteria.get(7).equals("")){
+				if(compareUniv.getFemaleRatio() > Double.parseDouble(criteria.get(7))){
+					continue;
+				}
+			}
+			else if(!criteria.get(8).equals("")){
+				if(compareUniv.getSatVerbal() < Double.parseDouble(criteria.get(8))){
+					continue;
+				}
+			}
+			else if(!criteria.get(9).equals("")){
+				if(compareUniv.getSatVerbal() > Double.parseDouble(criteria.get(9))){
+					continue;
+				}
+			}
+			else if(!criteria.get(10).equals("")){
+				if(compareUniv.getSatMath() < Double.parseDouble(criteria.get(10))){
+					continue;
+				}
+			}
+			else if(!criteria.get(11).equals("")){
+				if(compareUniv.getSatMath() > Double.parseDouble(criteria.get(11))){
+					continue;
+				}
+			}
+			else if(!criteria.get(12).equals("")){
+				if(compareUniv.getExpenses() < Double.parseDouble(criteria.get(12))){
+					continue;
+				}
+			}
+			else if(!criteria.get(13).equals("")){
+				if(compareUniv.getExpenses() > Double.parseDouble(criteria.get(13))){
+					continue;
+				}
+			}
+			else if(!criteria.get(14).equals("")){
+				if(compareUniv.getPerFinanAid() < Double.parseDouble(criteria.get(14))){
+					continue;
+				}
+			}
+			else if(!criteria.get(15).equals("")){
+				if(compareUniv.getPerFinanAid() > Double.parseDouble(criteria.get(15))){
+					continue;
+				}
+			}
+			else if(!criteria.get(16).equals("")){
+				if(compareUniv.getTotNumOfApplicant() < Integer.parseInt(criteria.get(16))){
+					continue;
+				}
+			}
+			else if(!criteria.get(17).equals("")){
+				if(compareUniv.getTotNumOfApplicant() > Integer.parseInt(criteria.get(17))){
+					continue;
+				}
+			}
+			else if(!criteria.get(18).equals("")){
+				if(compareUniv.getPerAdmitted() < Double.parseDouble(criteria.get(18))){
+					continue;
+				}
+			}
+			else if(!criteria.get(19).equals("")){
+				if(compareUniv.getPerAdmitted() > Double.parseDouble(criteria.get(19))){
+					continue;
+				}
+			}
+			else if(!criteria.get(20).equals("")){
+				if(compareUniv.getPerEnrolled() < Double.parseDouble(criteria.get(20))){
+					continue;
+				}
+			}
+			else if(!criteria.get(21).equals("")){
+				if(compareUniv.getPerEnrolled() > Double.parseDouble(criteria.get(21))){
+					continue;
+				}
+			}
+			else if(!criteria.get(22).equals("")){
+				if(compareUniv.getAcademicsScale() < Integer.parseInt(criteria.get(22))){
+					continue;
+				}
+			}
+			else if(!criteria.get(23).equals("")){
+				if(compareUniv.getAcademicsScale() > Integer.parseInt(criteria.get(23))){
+					continue;
+				}
+			}
+			else if(!criteria.get(24).equals("")){
+				if(compareUniv.getSocialScale() < Integer.parseInt(criteria.get(24))){
+					continue;
+				}
+			}
+			else if(!criteria.get(25).equals("")){
+				if(compareUniv.getSocialScale() > Integer.parseInt(criteria.get(25))){
+					continue;
+				}
+			}
+			else if(!criteria.get(26).equals("")){
+				if(compareUniv.getQualOfLifeScale() < Integer.parseInt(criteria.get(26))){
+					continue;
+				}
+			}
+			else if(!criteria.get(27).equals("")){
+				if(compareUniv.getQualOfLifeScale() > Integer.parseInt(criteria.get(27))){
+					continue;
+				}
+			}
+			for(int i = 28 ; i < criteria.size(); i++){
+				if(criteria.get(i).equals("")){
+					if(searched.contains(compareUniv)){
+						continue; ////// duplicate detection
 					}
+					searched.add(compareUniv);
+				}
+				else if(compareUniv.getEmphases().contains(criteria.get(i))){
+					if(searched.contains(compareUniv)){
+						continue; ////// duplicate detection
+					}
+					searched.add(compareUniv);
 				}
 			}
 		}
-		else{
-			searched = schoolList; //////////if emphases criteria is empty, then ignore it
-		}
-		
 		return searched;
   }
   /**
@@ -164,13 +266,16 @@ public class SearchController{
 					+ Math.abs((university.getAcademicsScale() - uni.get(i).getAcademicsScale()))/diff.get(9)
 					+ Math.abs((university.getSocialScale() - uni.get(i).getSocialScale()))/diff.get(10)
 					+ Math.abs((university.getQualOfLifeScale() - uni.get(i).getQualOfLifeScale()))/diff.get(11);
-			if(university.getState().equals(uni.get(i).getState())){
+			if(!university.getState().equals(uni.get(i).getState())){
 				dist +=1.0;
 			}
-			if(university.getLocation().equals(uni.get(i).getLocation())){
+			if(!university.getLocation().equals(uni.get(i).getLocation())){
 				dist +=1.0;
 			}
-			if(university.getControl().equals(uni.get(i).getControl())){
+			if(!university.getControl().equals(uni.get(i).getControl())){
+				dist +=1.0;
+			}
+			if(!university.getSchoolName().equals(uni.get(i).getSchoolName())){
 				dist +=1.0;
 			}
 			sorted.put(uni.get(i),dist);
@@ -181,6 +286,11 @@ public class SearchController{
 		for(int i =0; i < 5; i++){
 			recommendation.add((University) it.next());
 		}
+		///////////////////////////test
+		for(University u : sorted.keySet()){
+			list.put(u.getSchoolName(), sorted.get(u));
+		}
+		//////////////////////////test
 		return recommendation;
 	}
 	
@@ -189,7 +299,7 @@ public class SearchController{
 	 * @param map to sort
 	 * @return List sorted key from the lowest to the highest value
 	 */
-	private static List sortByValue(final Map map) {
+	private static List sortByValue(final Map map){
         List<String> list = new ArrayList();
         list.addAll(map.keySet());
          
