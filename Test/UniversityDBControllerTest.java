@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import Controller.*;
 import Entity.*;
 import java.util.*;
-
+import java.lang.*;
 import org.junit.*;
 
 /**
@@ -42,18 +42,41 @@ public class UniversityDBControllerTest {
 	 University testUNIversity = new University("getlistSchool", "testState", "testLoc", "testControl", 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0, 0, 0, emphases);
 
 	 uniList = new ArrayList<University>();
-	 if(UniDB.getUniversity("testSchool") != null){
-		 UniDB.deleteUniversity("testSchool");
-		 System.out.println("deleted testUni2");
-	 }
-	 else if(UniDB.getUniversity("testSchoolUpdated") != null){
-		 UniDB.deleteUniversity("testSchoolUpdated");
-		 System.out.println("deleted a");
-	 }
-	 else if(UniDB.getUniversity("getlistSchool") != null){
-		 UniDB.deleteUniversity("getlistSchool");
-		 System.out.println("deleted");
-	 }
+//	 if(UniDB.getUniversity("testSchool") != null){
+//		 boolean test = UniDB.deleteUniversity("testSchool");
+//		 try {
+//			    Thread.sleep(1000);
+//			} catch (InterruptedException e){
+//				e.printStackTrace();
+//			}		
+//		 if(test){
+//		 
+//		 System.out.println("deleted testUni2");
+//	 }
+//	 }
+//	 else if(UniDB.getUniversity("testSchoolUpdated") != null){
+//		 boolean test2 = UniDB.deleteUniversity("testSchoolUpdated");
+//		 if(test2){
+//		 try {
+//			    Thread.sleep(1000);
+//			} catch (InterruptedException e){
+//				e.printStackTrace();
+//			}		 
+//		 System.out.println("deleted a");
+//	 }
+//	 }
+//	 else if(UniDB.getUniversity("getlistSchool") != null){
+//		 boolean test3 = UniDB.deleteUniversity("getlistSchool");
+//				 try {
+//					    Thread.sleep(1000);
+//					} catch (InterruptedException e){
+//						e.printStackTrace();
+//					}		
+//		 if(test3){
+//		
+//		 System.out.println("deleted");
+//	 }
+//	 }
 	 }
 	
 	/**
@@ -78,12 +101,12 @@ public class UniversityDBControllerTest {
 	public void testUpdateUniversity() {
 		//UniDB.deleteUniversity("testSchool");//wipping the DataBase of the test university
 		boolean test2 = UniDB.addUniversity(testUniversity2);//readding it
-		
 		Assert.assertTrue("testUniversity2 emphasis[0] should be math", UniDB.getUniversity("testSchool").getEmphases().get(0).equals("Biology"));
-		//Assert.assertFalse("Trying to updated TestUniversity2 with bad parameter University should fail: ", UniDB.updateUniversity(badUni));
-		boolean test = UniDB.updateUniversity(updatedTestUni2);//updating the testUniversity2 
+		testUniversity2.setEmphases(emphasesUpdate);
+		boolean test = UniDB.updateUniversity(testUniversity2);
 		System.out.println(test);
 		testUniversity2 = UniDB.getUniversity("testSchool");
+		System.out.println(testUniversity2.getEmphases());
 		ArrayList<String> testEmph = testUniversity2.getEmphases();//confirming the emphasis[0] changed from math to english
 		Assert.assertTrue("new Emphasis equals enlgish", testEmph.get(0).equals("English"));
 		//UniDB.deleteUniversity("testSchool");//wipping the DataBase of the test university
