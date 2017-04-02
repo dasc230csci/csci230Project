@@ -112,7 +112,7 @@ public class AccountController{
   public String verifyAccount(String username, String password){
     Account account = adbController.getAccount(username);
     if(account == null){
-    	throw new NullPointerException("username password wrong combination");
+    	throw new NullPointerException("username does not exist");
     }
     else if(account.getPassword().equals(password)){
       return account.getType();

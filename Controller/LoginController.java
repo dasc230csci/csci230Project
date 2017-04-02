@@ -31,9 +31,6 @@ public class LoginController {
 	  */
 	 public String verifyUser(String username, String password){
 		 String verify = this.accountController.verifyAccount(username, password);
-		 if(verify == null){
-			 verify = "isFailed";
-		 }
 		 return verify; 
 	 }
 }
