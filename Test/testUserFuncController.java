@@ -2,6 +2,8 @@ package Test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -72,7 +74,7 @@ public class testUserFuncController {
 
 	@Test
 	public void testSearchRecommendation() {
-		fail("Not yet implemented");
+		assertTrue(this.userFuncController.searchRecommendation("BARD") instanceof ArrayList);
 	}
 
 }
