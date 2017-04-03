@@ -64,7 +64,43 @@ public class testUserFuncController {
 
 	@Test
 	public void testSearch() {
-		fail("Not yet implemented");
+		ArrayList<String> criteria = new ArrayList<String>();
+		
+		  criteria.add("ST");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		  criteria.add("");
+		
+		assertTrue(this.userFuncController.search(criteria) instanceof ArrayList);
 	}
 
 	@Test
