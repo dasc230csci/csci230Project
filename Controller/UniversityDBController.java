@@ -144,7 +144,6 @@ public class UniversityDBController {
 		ArrayList<University> schoolInfo = new ArrayList<University>();
 		String[][] school = dblib.university_getUniversities();
 		String[][] empArr = dblib.university_getNamesWithEmphases();
-		
 		for(int i =0 ; i < school.length; i++){
 			ArrayList<String> emphases = new ArrayList<String>();
 			for(int j = 0; j < empArr.length; j++){

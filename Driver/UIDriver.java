@@ -50,7 +50,7 @@ public class UIDriver {
 	public void loggin(){
 		System.out.println("====================loggin()====================");
 		System.out.println("Succeed if u : " + loginUi.verifyUser("useru", "password"));
-		System.out.println("Succeed if a : " + loginUi.verifyUser("adminu", "password"));
+		System.out.println("Succeed if a : " + loginUi.verifyUser("nadmin", "password"));
 	}
 	
 	/**
@@ -237,6 +237,7 @@ public class UIDriver {
 	public void viewAllUniversity(){
 		System.out.println("====================viewAllUniversity()====================");
 		ArrayList<University> university = adminUi.viewUniversityList();
+		System.out.println(university.size());
 		for(University u : university){
 			System.out.println(u.getSchoolName());
 		}

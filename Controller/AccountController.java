@@ -39,6 +39,9 @@ public class AccountController{
    * @return true if successfully create new Account
    */
   public boolean createAccount(String firstName, String lastName, String username, String password, String type, String status){
+	  if(adbController.getAccount(username)!=null){
+		  throw new IllegalArgumentException("the user name already exist, please choose a different one");
+	  }
       Account account = new Account(firstName, lastName, username, password, type, status, false);
       if(adbController.addAccount(account)){
         return true; 
@@ -58,6 +61,16 @@ public class AccountController{
    * @return true if successfully edit profile
    */
   public boolean adminEditProfile(String firstName, String lastName, String username, String password, String type, String status){
+	  if( firstName==null || lastName==null||password==null||type==null||status==null){
+		  throw new IllegalArgumentException("please input valid information");
+	  }
+	  else if(!type.equals("a")&& !type.equals("u")){
+		  System.out.println(type);
+		  throw new IllegalArgumentException("please input valid type");
+	  }
+	  else if(!status.equals("Y")&& !status.equals("N")){
+		  throw new IllegalArgumentException("please input valid status");
+	  }
     Account newAccount = adbController.getAccount(username);
     newAccount.setFirstName(firstName);
     newAccount.setLastName(lastName);
@@ -80,6 +93,9 @@ public class AccountController{
    * @return true if successfully edit profile
    */
   public boolean userEditProfile(String username, String firstName, String lastName, String password){
+	  if( firstName==null || lastName==null||password==null){
+		  throw new IllegalArgumentException("please input valid information");
+	  }
     Account newAccount = adbController.getAccount(username);
     newAccount.setFirstName(firstName);
     newAccount.setLastName(lastName);

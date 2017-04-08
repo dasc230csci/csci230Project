@@ -1,4 +1,11 @@
 /UniversityControllerTest.class
 /UniversityDBControllerTest.class
+/UserTest.class
 /AccountDBControllerTest.class
-/UniversityTest.class
+/testAccount.class
+/testLoginController.class
+/testUniversityController.class
+/testUserFuncController.class
+/UserUITest.class
+/FunctionalitiesTest.class
+/AccountControllerTest.class
