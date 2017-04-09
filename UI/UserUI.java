@@ -24,6 +24,11 @@ public class UserUI{
  private UserFuncController userFuncController;
  
  /**
+  * Allows functionality of logout.
+  */
+ private LoginController loginController;
+ 
+ /**
   * username of the User
   */
  private String username;
@@ -35,6 +40,7 @@ public class UserUI{
  public UserUI(String username){
    this.userFuncController= new UserFuncController();
    this.username = username;
+   this.loginController = new LoginController();
  }
 
  
@@ -208,5 +214,16 @@ public class UserUI{
    */
   public ArrayList<University> searchRecommendation(String schoolName){
 	  return userFuncController.searchRecommendation(schoolName);
+  }
+  
+  /**
+   * Logs User out of CMC system
+   * returns true if user is successfully logged out
+   * 
+   * @param userName username of user to logoff
+   * @return boolean to determine if user is logged out
+   */
+  public boolean logOff(String userName){
+ 	 return this.loginController.logOff(userName);
   }
  }

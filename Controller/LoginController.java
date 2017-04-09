@@ -14,6 +14,8 @@ public class LoginController {
 	 */
 	 private AccountController accountController;
 	 
+	 private AccountDBController accountDBController;
+	 
 	 /**
 	  * Default Constructor. Initialize AccountController.
 	  */
@@ -33,4 +35,22 @@ public class LoginController {
 		 String verify = this.accountController.verifyAccount(username, password);
 		 return verify; 
 	 }
-}
+	 
+	 /**
+	  * Logs User out of CMC system
+	  * returns true if user is successfully logged out
+	  * User must first be logged in to logout
+	  * 
+	  * @return boolean to determine if user is logged out
+	  */
+	 public boolean logOff(String userName){
+		 String status = accountDBController.getAccount(userName).getStatus();
+		 if (status.equals("Y")){
+			 accountDBController.getAccount(userName).setLoggedIn(false);
+			 return true;
+		 }
+		 else{
+			 return false;
+		 }
+		 }
+	 }
