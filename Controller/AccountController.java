@@ -77,10 +77,7 @@ public class AccountController{
     newAccount.setPassword(password);
     newAccount.setType(type);
     newAccount.setStatus(status);
-    if(adbController.updateAccount(newAccount)){
-        return true; 
-      }
-    return false;
+    return adbController.updateAccount(newAccount);
   }
   
   /**
@@ -100,10 +97,7 @@ public class AccountController{
     newAccount.setFirstName(firstName);
     newAccount.setLastName(lastName);
     newAccount.setPassword(password);
-    if(adbController.updateAccount(newAccount)){
-      return true; 
-    }
-    return false;
+    return adbController.updateAccount(newAccount);
   }
   
   /**
@@ -113,9 +107,7 @@ public class AccountController{
    * @return true if successfully edit profile
    */
   public boolean deactivateAccount(String username){
-    if(adbController.deactivateAccount(username))
-    	return true;
-    return false;
+    return adbController.deactivateAccount(username);
   }
   
   /**
