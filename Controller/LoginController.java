@@ -44,8 +44,8 @@ public class LoginController {
 	  * @return boolean to determine if user is logged out
 	  */
 	 public boolean logOff(String userName){
-		 String status = accountDBController.getAccount(userName).getStatus();
-		 if (status.equals("Y")){
+		 boolean status = accountDBController.getAccount(userName).getLoggedIn();
+		 if (status == true){
 			 accountDBController.getAccount(userName).setLoggedIn(false);
 			 return true;
 		 }
