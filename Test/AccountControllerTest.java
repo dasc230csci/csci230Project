@@ -39,7 +39,7 @@ public class AccountControllerTest {
 		Assert.assertTrue("the newUser type is "+newUser.getType(), newUser.getType().equals("u"));
 		Assert.assertTrue("the newUser status is "+newUser.getStatus(), newUser.getStatus().equals("Y"));
 	}
-	
+
 	@Test
 	public void testCreateAccount_ValidCaseAccount(){
 		ac.createAccount("test", "test", "testNew", "p", "a", "Y");
