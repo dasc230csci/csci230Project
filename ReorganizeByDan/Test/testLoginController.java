@@ -45,5 +45,10 @@ public class testLoginController {
 		//Case 4: Invalid UN & Invalid PW
 		this.loginController.verifyUser("useruuuu", "userpwwww");
 	}
+	
+	@Test
+	public void testLogOff() {
+		assertTrue(this.loginController.logOff("juser"));
+	}
 
 }
