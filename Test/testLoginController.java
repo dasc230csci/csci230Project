@@ -58,6 +58,11 @@ public class testLoginController {
 		this.loginController.verifyUser("useruuuu", "userpwwww");
 	}
 	
+	@Test
+	public void testLogOff() {
+		assertTrue(this.loginController.logOff("juser"));
+	}
+	
 	
 
 }

@@ -9,7 +9,7 @@ import Controller.*;
 import Entity.*;
 import UI.*;
 
-public class U1LoginTest {
+public class testU1Login {
 
 	private LoginUI loginUI;
 	private LoginController loginController;
