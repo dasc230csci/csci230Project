@@ -68,8 +68,8 @@ public class UserUI{
    * @return an instance of the Users Account
    */ 
   public User viewProfile(){
-	User user = userFuncController.getProfile(username);
-    return user;
+	this.user = userFuncController.getProfile(username);
+    return this.user;
   }
   
   /**
@@ -158,5 +158,14 @@ public class UserUI{
    */
   public boolean logOff(){
  	 return this.loginController.logOff(user);
+  }
+  
+  /**
+   * get the user name
+   * 
+   * @return String the user name
+   */
+  public String getUsername(){
+	  return this.username;
   }
  }
