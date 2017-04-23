@@ -38,15 +38,25 @@ public class AccountController{
    * @param status status of the user whether the account is activated or not
    * @return true if successfully create new Account
    */
-  public boolean createAccount(String firstName, String lastName, String username, String password, String type, String status){
+  public int createAccount(String firstName, String lastName, String username, String password, String type, String status){
 	  if(adbController.getAccount(username)!=null){
-		  throw new IllegalArgumentException("the user name already exist, please choose a different one");
+		  return -1;
+	  }
+	  if( firstName==null || lastName==null||username==null||password==null||type==null||status==null){
+		  return -2;
+	  }
+	  else if(!type.equals("a")&& !type.equals("u")&&!type.equals("A")&& !type.equals("U")){
+		  System.out.println(type);
+		  return -3;
+	  }
+	  else if(!status.equals("Y")&& !status.equals("N")){
+		  return -4;
 	  }
       Account account = new Account(firstName, lastName, username, password, type, status, false);
-      if(adbController.addAccount(account)){
-        return true; 
+      if(adbController.addAccount(account)==true){
+    	  return 0;
       }
-    return false;
+      return -5;
   }
   
   /**
@@ -60,16 +70,15 @@ public class AccountController{
    * @param status status of the user whether the account is activated or not
    * @return true if successfully edit profile
    */
-  public boolean adminEditProfile(String firstName, String lastName, String username, String password, String type, String status){
+  public int adminEditProfile(String firstName, String lastName, String username, String password, String type, String status){
 	  if( firstName==null || lastName==null||password==null||type==null||status==null){
-		  throw new IllegalArgumentException("please input valid information");
+		  return -1;
 	  }
 	  else if(!type.equals("a")&& !type.equals("u")){
-		  System.out.println(type);
-		  throw new IllegalArgumentException("please input valid type");
+		  return -2;
 	  }
 	  else if(!status.equals("Y")&& !status.equals("N")){
-		  throw new IllegalArgumentException("please input valid status");
+		  return -3;
 	  }
     Account newAccount = adbController.getAccount(username);
     newAccount.setFirstName(firstName);
@@ -77,7 +86,10 @@ public class AccountController{
     newAccount.setPassword(password);
     newAccount.setType(type);
     newAccount.setStatus(status);
-    return adbController.updateAccount(newAccount);
+    if(adbController.updateAccount(newAccount)==true){
+    return 0;
+    }
+    return -4;
   }
   
   /**
@@ -91,7 +103,7 @@ public class AccountController{
    */
   public boolean userEditProfile(String username, String firstName, String lastName, String password){
 	  if( firstName==null || lastName==null||password==null){
-		  throw new IllegalArgumentException("please input valid information");
+		  return false;
 	  }
     Account newAccount = adbController.getAccount(username);
     newAccount.setFirstName(firstName);
@@ -120,12 +132,12 @@ public class AccountController{
   public String verifyAccount(String username, String password){
     Account account = adbController.getAccount(username);
     if(account == null){
-    	throw new NullPointerException("username does not exist");
+    	return "username does not exist";
     }
     else if(account.getPassword().equals(password)){
       return account.getType();
     }
-    return "failed";
+    return "f";
   }
   
   /**

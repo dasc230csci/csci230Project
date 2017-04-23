@@ -137,7 +137,7 @@ public class AdminUI {
 	 * Create a new user.
 	 * @return true if successfully create new user
 	 */
-	public boolean createUser(String firstName, String lastName, String userName, String password, String type, String status) {
+	public int createUser(String firstName, String lastName, String userName, String password, String type, String status) {
 		return adminFuncController.createUser(firstName, lastName, userName, password, type, status);
 		
 	}
@@ -146,7 +146,7 @@ public class AdminUI {
 	 * Edit an existing user information 
 	 * @return true if successfully edit profile
 	 */
-	public boolean editUserProfile(String firstName, String lastName, String userName, String password, String type, String status) {
+	public int editUserProfile(String firstName, String lastName, String userName, String password, String type, String status) {
 		return adminFuncController.editUserProfile(firstName, lastName, userName, password, type, status);
 	}
 	

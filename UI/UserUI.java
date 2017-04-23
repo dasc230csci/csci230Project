@@ -69,6 +69,7 @@ public class UserUI{
    */ 
   public User viewProfile(){
 	this.user = userFuncController.getProfile(username);
+	this.user.setLoggedIn(true);
     return this.user;
   }
   

@@ -58,16 +58,7 @@ public class Account {
    * @param loggedIn status of the user whether the account is loggedIn
    */
   public Account(String firstname, String lastname, String username, String password, String type, String status, boolean loggedIn){
-	  if( firstname==null || lastname==null||username==null||password==null||type==null||status==null){
-		  throw new IllegalArgumentException("please input valid information");
-	  }
-	  else if(!type.equals("a")&& !type.equals("u")&&!type.equals("A")&& !type.equals("U")){
-		  System.out.println(type);
-		  throw new IllegalArgumentException("please input valid type");
-	  }
-	  else if(!status.equals("Y")&& !status.equals("N")){
-		  throw new IllegalArgumentException("please input valid status");
-	  }
+	  
     this.firstName = firstname;
     this.lastName = lastname;
     this.username = username;

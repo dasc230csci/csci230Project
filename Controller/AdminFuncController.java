@@ -85,9 +85,10 @@ public class AdminFuncController
    * @param password the password of the user
    * @param type admin or student
    * @param status activate or not
+ * @return 
    * @return boolean if the user is added or not
    */
-  public boolean createUser(String firstName, String lastName, String userName, String password, String type, String status)
+  public int createUser(String firstName, String lastName, String userName, String password, String type, String status)
   {
   return accountController.createAccount(firstName, lastName, userName, password, type, status);
   }
@@ -103,7 +104,7 @@ public class AdminFuncController
    * @param status activate or not
    * @return boolean if the user is added or not
    */
-  public boolean editUserProfile(String firstName, String lastName, String username, String password, String type, String status)
+  public int editUserProfile(String firstName, String lastName, String username, String password, String type, String status)
   {
     return accountController.adminEditProfile(firstName, lastName, username, password, type, status);
   }
