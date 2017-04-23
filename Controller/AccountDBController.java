@@ -23,10 +23,7 @@ public class AccountDBController {
  public AccountDBController(){
   dblib = new UniversityDBLibrary("dasc","dasc","csci230");
  }
- //////////////////////////////////////////////////////////////////// leave for testing
- public UniversityDBLibrary getdblib(){
-  return dblib;
- }
+
  public boolean deleteUser(String username){
   String[][] savedSchool = dblib.user_getUsernamesWithSavedSchools();
 	 ArrayList<String> oldSchoolList = new ArrayList<String>();
@@ -43,6 +40,12 @@ public class AccountDBController {
   }
   return false;
  }
+ 
+ /**
+  * Method that reactivate user
+  * @param username name of the user want to reactivate
+  * @return true if successfully removed
+  */
  public boolean reactivateAccount(String username){
 	 ArrayList<Account> list = getAccountList();
 	 for(int i=0; i< list.size(); i++){
@@ -54,7 +57,7 @@ public class AccountDBController {
 	 }
 	 return false;
  }
-//////////////////////////////////////////////////////////////////
+
  /**
    * Update Account information and store in DB
    * 

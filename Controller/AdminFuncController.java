@@ -126,4 +126,13 @@ public class AdminFuncController
   public ArrayList<University> getUniversityList(){
 	  return universityController.getUniversityList();
   }
+  
+  /**
+   * Method that reactivate user
+   * @param username name of the user want to reactivate
+   * @return true if successfully removed
+   */
+  public boolean reactivateAccount(String username){
+	  return accountController.reactivateAccount(username);
+  }
 }

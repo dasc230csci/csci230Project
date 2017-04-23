@@ -174,4 +174,13 @@ public class AccountController{
   public boolean removeSavedSchool(String username, String schoolName){
 	return adbController.removeSavedSchool(username, schoolName);
   }
+  
+  /**
+   * Method that reactivate user
+   * @param username name of the user want to reactivate
+   * @return true if successfully removed
+   */
+  public boolean reactivateAccount(String username){
+	  return adbController.reactivateAccount(username);
+  }
 }

@@ -188,5 +188,13 @@ public class AdminUI {
 	  public boolean logOff(){
 	 	 return this.loginController.logOff(admin);
 	  }
-	
+	  
+	  /**
+	   * Method that reactivate user
+	   * @param username name of the user want to reactivate
+	   * @return true if successfully removed
+	   */
+	  public boolean reactivateAccount(String username){
+		  return adminFuncController.reactivateAccount(username);
+	  }
 }
